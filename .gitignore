@@ -1,17 +1,16 @@
-# Compiled class file
+# 编译相关文件
 /bin/
+/src/main/webapp/
+/src/test/webapp/
 *.class
 
-# Log file
+# 日志文件
 *.log
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
+# 手机工具 (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# 包
 *.jar
 *.war
 *.nar
@@ -20,5 +19,5 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+# 虚拟机日志, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
