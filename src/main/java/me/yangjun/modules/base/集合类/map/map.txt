@@ -1,4 +1,0 @@
-Hashtable是同步的，不允许null。继承于陈旧的Dictionary类的。
-HashMap是非同步的，速度比Hashtable快。允许null。HashMap继承于AbstractMap类。内部Hash数组等于Hashtable不同。Map 中插入、删除和定位元素，HashMap 是最好的选择。
-WeakHashMap是一种改进的HashMap，若一个key不再被外部所引用，那么该key可以被GC回收。
-TreeMap中所有元素都保持固定的顺序，如果需有序的结果你就应该使用TreeMap（HashMap中元素的排列顺序是不固定的）。

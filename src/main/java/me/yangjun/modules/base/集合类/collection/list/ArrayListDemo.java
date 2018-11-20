@@ -3,8 +3,17 @@ package me.yangjun.modules.base.集合类.collection.list;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.junit.Test;
+
+/**
+ * <p>ArrayList</p>
+ * <p>特征：操作速度慢，访问速度快，线程不安全</p>
+ * @author yangjun
+ * @since 2018-11-19 11:13:21
+ * @version 0.1
+ */
 
 public class ArrayListDemo {
 	private List<String> list1 = new ArrayList<String>();
@@ -20,7 +29,7 @@ public class ArrayListDemo {
 
 	/**
 	 * <p>测试add(int index, E element)方法</p>
-	 * <p>在所选下边左边插入，右边的对象全部右移一位</p>
+	 * <p>在所选下标左边插入，右边的对象全部右移一位</p>
 	 */
 	@Test
 	public void testFuncAdd() {
@@ -44,7 +53,7 @@ public class ArrayListDemo {
 	}
 	
 	/**
-	 * <p>遍历数据 -- Collection的迭代器</p>
+	 * <p>遍历数据 -- Iterator</p>
 	 * @see ArrayListProblem
 	 */
 	@Test
@@ -52,17 +61,35 @@ public class ArrayListDemo {
 		this.addData();
 		Iterator<String> it = this.list1.iterator();
 		while(it.hasNext()) {
-			// 过程中不能修改List
 			System.out.println(it.next());
 		}
 	}
 	
 	/**
-	 * <p>遍历数据 -- List专有迭代器</p>
+	 * <p>遍历数据 -- ListIterator</p>
 	 */
 	@Test
 	public void dealListErgodic() {
-		//TODO ListIterator 
+		this.addData();
+		ListIterator<String> lit = ((ArrayList<String>) this.list1).listIterator();
+		while (lit.hasNext()) {
+			System.out.println("previousIndex = " + lit.previousIndex());// 获取游标前面一个位置
+			System.out.println("hasPrevious = " + lit.hasPrevious());
+			String currData = lit.next();
+			System.out.println("currData = " + currData);
+			if ("aa".equals(currData)) {
+				lit.add("oo");// 在当前元素后面插入
+			}
+			if ("bb".equals(currData)) {
+				lit.set("vv");// 修改当前元素
+			}
+			if ("cc".equals(currData)) {
+				lit.remove();// 删除当前元素，需要注意的是，remove方法调用之前必须调用next方法
+			}
+			System.out.println("nextIndex = " + lit.nextIndex());// 获取游标后面一个位置
+			System.out.println("------------------------------");
+		}
+		System.out.println(this.list1);
 	}
 	
 	/**

@@ -1,6 +1,7 @@
 package me.yangjun.modules.base.集合类.collection.list;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.Test;
@@ -17,8 +18,9 @@ public class ArrayListProblem {
 	}
 	
 	/**
-	 * <p>使用Collection的迭代器遍历的时候修改原集合</p>
-	 * <p>remove或者add方法会导致集合中其他元素的下标改变</p>
+	 * <p>遍历的时候修改原集合</p>
+	 * <p>remove方法会导致集合中其他元素的下标改变</p>
+	 * <p>因此遍历的时候修改原集合不能用forEach，要用迭代器</p>
 	 */
 	@Test
 	public void removeWhileErgodic() {
@@ -26,13 +28,26 @@ public class ArrayListProblem {
 		System.out.println(this.list1.size()); // 5
 		System.out.println(this.list1);// [abcd1, abcd2, abcd3, abcd4, abcd5]
 
+		// 错误
 		for (int i = 0; i < this.list1.size(); i++) {
 			if ((this.list1.get(i)).startsWith("abcd")) {
 				this.list1.remove(i);
 			}
 		}
-
 		System.out.println(this.list1.size());// 2
 		System.out.println(this.list1);// [abcd2, abcd4]
+		
+		this.list1.clear();
+		this.addData();
+		
+		// 正确
+		Iterator<String> it = this.list1.iterator();
+		while (it.hasNext()) {
+			if (it.next().startsWith("abcd")) {
+				it.remove();
+			}
+		}
+		System.out.println(this.list1.size());// 0
+		System.out.println(this.list1);// []
 	}
 }

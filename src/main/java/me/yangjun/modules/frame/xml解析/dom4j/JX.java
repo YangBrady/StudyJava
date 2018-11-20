@@ -40,9 +40,9 @@ public class JX {
 		try {
 			Document document = saxReader.read(inputXml);
 			Element users = document.getRootElement();
-			for (Iterator i = users.elementIterator(); i.hasNext();) {
+			for (Iterator<Element> i = users.elementIterator(); i.hasNext();) {
 				Element user = (Element) i.next();
-				for (Iterator j = user.elementIterator(); j.hasNext();) {
+				for (Iterator<Element> j = user.elementIterator(); j.hasNext();) {
 					Element node = (Element) j.next();
 					System.out.println(node.getName() + ":" + node.getText());
 				}
