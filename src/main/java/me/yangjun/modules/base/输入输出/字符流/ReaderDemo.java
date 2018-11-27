@@ -10,6 +10,7 @@ public class ReaderDemo {
 
 	@Test
 	public void testRead() throws IOException {
+		System.out.println("相对路径的地址 = " + System.getProperty("user.dir"));
 		Reader reader = new FileReader("src/main/java/me/yangjun/modules/base/输入输出/字符流/ReaderDemoTest01.txt");
 		int a = reader.read();
 		System.out.println(a);
