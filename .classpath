@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" output="src/main/webapp/classes" path="src/main/java"/>
-	<classpathentry excluding="**" kind="src" output="src/main/webapp/classes" path="src/main/resources"/>
+	<classpathentry kind="src" output="src/main/webapp/classes" path="src/main/resources"/>
 	<classpathentry kind="src" output="src/test/webapp/classes" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
