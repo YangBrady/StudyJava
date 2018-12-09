@@ -22,5 +22,8 @@ public class TestDemo {
         MalePerson malePerson3 = context.getBean("malePerson3", MalePerson.class);
         System.out.println(malePerson3.getLength());
 
+        MalePerson malePerson4 = context.getBean("malePerson4", MalePerson.class);
+        System.out.println(malePerson4.getLength());
+
     }
 }
