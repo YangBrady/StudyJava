@@ -1,5 +1,9 @@
 package me.yangjun.modules.security.demo01;
 
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
+
+import javax.crypto.Cipher;
 import java.io.FileInputStream;
 import java.security.KeyStore;
 import java.security.PrivateKey;
@@ -10,11 +14,6 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.Date;
 
-import javax.crypto.Cipher;
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
 /**
  * 证书组件
  *
@@ -22,7 +21,7 @@ import sun.misc.BASE64Encoder;
  * @version 1.0
  * @since 1.0
  */
-public abstract class CertificateCoder {
+public abstract class CertificateDemo {
 
     /**
      * Java密钥库(Java Key Store，JKS)KEY_STORE

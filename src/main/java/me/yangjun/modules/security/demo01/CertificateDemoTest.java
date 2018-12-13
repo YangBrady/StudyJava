@@ -1,15 +1,15 @@
 package me.yangjun.modules.security.demo01;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * @author 杨峻
  * @version 1.0
  * @since 1.0
  */
-public class CertificateCoderTest {
+public class CertificateDemoTest {
     private String password = "123456";
     private String alias = "www.zlex.org";
     private String certificatePath = "/Users/yangjun/Documents/TEMP/zlex.cer";
