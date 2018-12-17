@@ -7,6 +7,7 @@ public class MalePerson extends Person {
 	private String work;
 	private int workYear;
 	private String workPlace;
+	private Pet pet;
 
 	public MalePerson() {
 		super();
@@ -23,6 +24,14 @@ public class MalePerson extends Person {
 		this.work = work;
 		this.workYear = workYear;
 		this.workPlace = workPlace;
+	}
+
+	public MalePerson(String work, int workYear, String workPlace, Pet pet) {
+		super();
+		this.work = work;
+		this.workYear = workYear;
+		this.workPlace = workPlace;
+		this.pet = pet;
 	}
 
 	public String getWork() {
@@ -49,9 +58,18 @@ public class MalePerson extends Person {
 		this.workPlace = workPlace;
 	}
 
+	public Pet getPet() {
+		return pet;
+	}
+
+	public void setPet(Pet pet) {
+		this.pet = pet;
+	}
+
 	@Override
 	public String toString() {
-		return "MalePerson [work=" + work + ", workYear=" + workYear + ", workPlace=" + workPlace + "]";
+		return "MalePerson [work=" + work + ", workYear=" + workYear + ", workPlace=" + workPlace + ", pet=" + pet
+				+ "]";
 	}
 
 }

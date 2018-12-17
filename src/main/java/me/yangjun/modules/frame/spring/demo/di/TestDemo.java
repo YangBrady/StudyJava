@@ -31,5 +31,10 @@ public class TestDemo {
 
 		MalePerson malePersonFactory2 = context.getBean("diMalePersonFactory2ByIndex1", MalePerson.class);
 		System.out.println(malePersonFactory2);
+		
+		
+		
+		MalePerson malePersonSetting1 = context.getBean("diMalePersonBySetting1", MalePerson.class);
+		System.out.println(malePersonSetting1);
 	}
 }
