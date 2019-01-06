@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+	       http://www.springframework.org/schema/beans
+	       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		   http://www.springframework.org/schema/context
+		   http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <!-- **************************************** autowired **************************************** -->
+    <bean id="cat" class="me.yangjun.modules.frame.spring.demo.di.autowired.Cat">
+        <constructor-arg index="0" value="小猫"/>
+    </bean>
+    <bean id="dog" class="me.yangjun.modules.frame.spring.demo.di.autowired.Dog">
+        <constructor-arg index="0" value="小狗"/>
+    </bean>
+
+    <!-- ******************** 不自动装配 ******************** -->
+    <bean id="diAutowired1" class="me.yangjun.modules.frame.spring.demo.di.autowired.Person" autowire="byName">
+        <property name="name" value="Mooejun"/>
+        <property name="cat" ref="cat"/>
+        <property name="dog" ref="dog"/>
+    </bean>
+
+    <!-- ******************** byName ******************** -->
+    <bean id="diAutowired2" class="me.yangjun.modules.frame.spring.demo.di.autowired.Person" autowire="byName">
+        <property name="name" value="Mooejun"/>
+    </bean>
+
+    <!-- ******************** byType ******************** -->
+    <bean id="diAutowired3" class="me.yangjun.modules.frame.spring.demo.di.autowired.Person" autowire="byType">
+        <property name="name" value="Mooejun"/>
+    </bean>
+
+    <!-- ******************** constructor ******************** -->
+    <bean id="diAutowired4" class="me.yangjun.modules.frame.spring.demo.di.autowired.Person" autowire="constructor">
+        <constructor-arg index="0" value="Mooejun" />
+    </bean>
+</beans>
