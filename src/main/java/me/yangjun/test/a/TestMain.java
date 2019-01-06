@@ -3,8 +3,8 @@ package me.yangjun.test.a;
 import java.net.URL;
 
 /**
- * Created by 杨峻 on 2016/9/20. class.getResource() 与
- * class.getClassLoader().getResource() 方法
+ * Created by 杨峻 on 2016/9/20.
+ * class.getResource() 与 class.getClassLoader().getResource() 方法
  */
 public class TestMain {
 
