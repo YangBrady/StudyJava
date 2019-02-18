@@ -43,6 +43,8 @@ public class TestDemo {
 		System.out.println(malePersonSetting2);
 		MalePerson malePersonSetting3 = context.getBean("diMalePersonBySetting3", MalePerson.class);
 		System.out.println(malePersonSetting3);
+		MalePerson malePersonSetting4 = context.getBean("diMalePersonBySetting4", MalePerson.class);
+		System.out.println(malePersonSetting4);
 
 
 

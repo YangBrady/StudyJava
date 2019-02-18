@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	       http://www.springframework.org/schema/beans/spring-beans.xsd
+	       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--对象实例-->
+    <bean id="userDao" class="me.yangjun.modules.frame.spring.demo.aop.xml.UserDao"/>
+    <bean id="orderDao" class="me.yangjun.modules.frame.spring.demo.aop.xml.OrderDao"/>
+
+    <!--切面类-->
+    <bean id="aopSurface" class="me.yangjun.modules.frame.spring.demo.aop.xml.AopSurface"/>
+
+    <!--AOP配置-->
+    <aop:config>
+        <!--定义切入表达式，拦截哪些方法-->
+        <aop:pointcut id="pointCut" expression="execution(* me.yangjun.modules.frame.spring.demo.aop.xml.*.*(..))"/>
+        <!--指定切面类是哪个-->
+        <aop:aspect ref="aopSurface">
+            <!--指定来拦截的时候执行切面类的哪些方法-->
+            <aop:before method="begin" pointcut-ref="pointCut"/>
+            <aop:after method="close" pointcut-ref="pointCut"/>
+        </aop:aspect>
+    </aop:config>
+</beans>
