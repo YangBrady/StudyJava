@@ -16,6 +16,9 @@
 		<sitemesh.version>2.4.2</sitemesh.version>
 		<common-logging.version>1.2</common-logging.version>
 
+		<c3p0.version>0.9.1.2</c3p0.version>
+		<mysql.driver.version>5.1.30</mysql.driver.version>
+
 		<!-- environment setting -->
 		<jdk.version>1.8</jdk.version>
 		<tomcat.version>2.2</tomcat.version>
@@ -177,6 +180,20 @@
 			<version>${common-logging.version}</version>
 		</dependency>
 		<!-- common-logging end -->
+
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>${c3p0.version}</version>
+		</dependency>
+
+		<!-- jdbc driver setting -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.driver.version}</version>
+			<scope>runtime</scope>
+		</dependency>
 
 		<!-- DOM4J start -->
 		<dependency>
