@@ -16,6 +16,7 @@ public enum Color {
 		this.blueValue = bv;
 	}
 
+	@Override
 	public String toString() { // 覆盖了父类Enum的toString()
 		return super.toString() + "(" + redValue + "," + greenValue + "," + blueValue + ")";
 		// 不重写的话会只返回 BLACK 而不是 BLACK(0, 0, 0)

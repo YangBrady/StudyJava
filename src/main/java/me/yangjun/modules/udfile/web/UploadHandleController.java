@@ -49,6 +49,8 @@ public class UploadHandleController extends BaseController {
 			ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
 			// 监听文件上传进度
 			servletFileUpload.setProgressListener(new ProgressListener() {
+
+				@Override
 				public void update(long pBytesRead, long pContentLength, int arg2) {
 					System.out.println("文件大小为：" + pContentLength + ",当前已处理：" + pBytesRead);
 				}

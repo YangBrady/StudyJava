@@ -49,7 +49,7 @@ public class Test {
 
 	public void dealTimeA(Date date) {
 		Calendar cal = Calendar.getInstance(); // Calendar是抽象类
-		System.out.println(cal.get(cal.YEAR));
+		System.out.println(cal.get(Calendar.YEAR));
 
 		cal.setTime(date);
 		// int year = 2016, month = 10, day = 20, hour = 11, minute = 43, second
@@ -63,16 +63,16 @@ public class Test {
 		// gc.setTime(new Date());
 		// GregorianCalendar gc2 = new
 		// GregorianCalendar(2016,10,20);//year,month,day
-		int year = gc.get(gc.YEAR);
-		int month = gc.get(gc.MONTH);
+		int year = gc.get(Calendar.YEAR);
+		int month = gc.get(Calendar.MONTH);
 		System.out.println(year + " " + month);
 		gc.set(Calendar.YEAR, 1994);
 		gc.set(Calendar.MONTH, 2);
 		gc.set(Calendar.DAY_OF_MONTH, 6);
-		System.out.println(gc.get(gc.YEAR) + " " + gc.get(gc.MONTH) + " " + gc.get(gc.DAY_OF_MONTH));
+		System.out.println(gc.get(Calendar.YEAR) + " " + gc.get(Calendar.MONTH) + " " + gc.get(Calendar.DAY_OF_MONTH));
 		gc.add(Calendar.MONTH, 1);
 		gc.add(Calendar.DAY_OF_MONTH, 9);
-		System.out.println(gc.get(gc.YEAR) + " " + gc.get(gc.MONTH) + " " + gc.get(gc.DAY_OF_MONTH));
+		System.out.println(gc.get(Calendar.YEAR) + " " + gc.get(Calendar.MONTH) + " " + gc.get(Calendar.DAY_OF_MONTH));
 		System.out.println(gc.getTime());
 	}
 }

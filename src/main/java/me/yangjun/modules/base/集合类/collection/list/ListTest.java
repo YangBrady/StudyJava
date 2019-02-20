@@ -32,7 +32,7 @@ public class ListTest {
 	/**
 	 * LinkedList
 	 */
-	public void LinkedListTest() {
+	public void linkedListTest() {
 		LinkedList a = new LinkedList();
 		a.add("winsun");
 		a.add("book");

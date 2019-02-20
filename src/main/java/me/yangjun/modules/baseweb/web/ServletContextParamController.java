@@ -16,6 +16,7 @@ public class ServletContextParamController extends HttpServlet {
 		super();
 	}
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println(this.getServletConfig().getServletContext().getInitParameter("app_name"));

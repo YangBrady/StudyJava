@@ -22,15 +22,18 @@ public class TestServlet extends HttpServlet {
 		super();
 	}
 
+	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 	}
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		super.service(request, response);
 	}
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String prodType = this.getServletConfig().getInitParameter("prodType");
@@ -42,6 +45,7 @@ public class TestServlet extends HttpServlet {
 		response.getWriter().write("prodType2 = " + prodType2);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);

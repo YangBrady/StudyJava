@@ -18,6 +18,7 @@ public class ServletContextReadController extends HttpServlet {
 		super();
 	}
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		InputStream is = this.getServletContext().getResourceAsStream("/WEB-INF/classes/test/test.properties");
