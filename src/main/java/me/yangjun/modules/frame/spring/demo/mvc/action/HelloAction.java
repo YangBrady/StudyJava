@@ -205,6 +205,7 @@ public class HelloAction {
     public String requestBodyDemo001(@RequestBody String jsonStr) {
         return jsonStr;
     }
+
     @RequestMapping("requestBody/demo002")
     @ResponseBody
     public String requestBodyDemo002(@RequestBody User user) {
@@ -218,9 +219,16 @@ public class HelloAction {
     @RequestMapping("responseBody/demo001")
     @ResponseBody
     public User responseBodyDemo001() {
-        User user2 = new User("1", "哈哈");
-        System.out.println(user2);
-        return user2;
+        User user = new User("1", "哈哈");
+        System.out.println(user);
+        return user;
+    }
+
+    @RequestMapping("responseBody/demo002")
+    @ResponseBody
+    public User responseBodyDemo002(@RequestBody User user) {
+        System.out.println(user);
+        return user;
     }
 
 }
