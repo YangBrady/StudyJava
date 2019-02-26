@@ -3,15 +3,26 @@ package me.yangjun.modules.frame.spring.demo.mvc.action;
 import me.yangjun.modules.frame.spring.demo.mvc.dto.Department;
 import me.yangjun.modules.frame.spring.demo.mvc.dto.Food;
 import me.yangjun.modules.frame.spring.demo.mvc.dto.User;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.beans.PropertyEditorSupport;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author mooejun
@@ -229,6 +240,70 @@ public class HelloAction {
     public User responseBodyDemo002(@RequestBody User user) {
         System.out.println(user);
         return user;
+    }
+
+    /**
+     * 字符串转日期
+     */
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        // Date 类型转换
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        CustomDateEditor dateEditor = new CustomDateEditor(df, true);
+        binder.registerCustomEditor(Date.class, dateEditor);
+    }
+
+    @RequestMapping("str2date/demo001")
+    public String str2dateDemo001() {
+        return "modules/frame/spring/demo/mvc/str2date";
+    }
+
+    @RequestMapping("str2date/demo001_resp")
+    public String str2dateDemo001_resp(Food food) {
+        System.out.println(food);
+        return "modules/frame/spring/demo/mvc/index";
+    }
+
+    /**
+     * 文件上传
+     * 需要common-io和common-fileupload支持
+     * 需要在SpringMVC配置文件配置上传文件拦截器
+     */
+    @RequestMapping("upload/demo001")
+    public String uploadDemo001() {
+        return "modules/frame/spring/demo/mvc/upload_demo001";
+    }
+    @RequestMapping(value = "upload/demo001_resp", method = RequestMethod.POST)
+    public String uploadDemo001_resp(Model model, HttpServletRequest req) throws Exception {
+        MultipartHttpServletRequest mreq = (MultipartHttpServletRequest) req;
+        MultipartFile mfile = mreq.getFile("file");
+        String fileName = mfile.getOriginalFilename();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        File file = new File(req.getSession().getServletContext().getRealPath("/") +
+                "upload/" + sdf.format(new Date()) + fileName);
+        FileOutputStream fos = new FileOutputStream(file);
+        fos.write(mfile.getBytes());
+        fos.flush();
+        fos.close();
+
+        model.addAttribute("message", "文件路径" + file);
+        return "modules/frame/spring/demo/mvc/index";
+    }
+
+    /**
+     * 异常处理
+     */
+    @ExceptionHandler
+    public ModelAndView exceptionHandler(Exception e) {
+        ModelAndView modelAndView = new ModelAndView("modules/frame/spring/demo/mvc/error");
+        modelAndView.addObject("exception", e);
+        System.out.println("in testExceptionHandler");
+        return modelAndView;
+    }
+    @RequestMapping("errorTest/demo001")
+    public String errorTestDemo001() {
+        System.out.println(1/0);
+        return "modules/frame/spring/demo/mvc/index";
     }
 
 }
