@@ -8,9 +8,9 @@ public enum Color {
 	private int greenValue;
 	private int blueValue;
 
-	// 构造器只是在构造枚举值的时候被调用。
-	// 构造枚举值，比如RED(255，0，0)，枚举构造器只能是私有的
-	private Color(int rv, int gv, int bv) {
+	// 构造器只是在构造枚举值的时候被调用，也就是上面定义实例的时候
+	// 构造枚举值，比如RED(255，0，0)，枚举构造器只能是私有private的
+	Color(int rv, int gv, int bv) {
 		this.redValue = rv;
 		this.greenValue = gv;
 		this.blueValue = bv;
