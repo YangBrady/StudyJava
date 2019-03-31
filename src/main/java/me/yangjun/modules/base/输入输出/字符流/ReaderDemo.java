@@ -8,6 +8,9 @@ import org.junit.Test;
 
 public class ReaderDemo {
 
+	/**
+	 * 读取单个字符
+	 */
 	@Test
 	public void testRead() throws IOException {
 		System.out.println("相对路径的地址 = " + System.getProperty("user.dir"));
@@ -17,6 +20,9 @@ public class ReaderDemo {
 		reader.close();
 	}
 
+	/**
+	 * 读取指定长度数据
+	 */
 	@Test
 	public void testRead2() throws IOException {
 		Reader reader = new FileReader("src/main/java/me/yangjun/modules/base/输入输出/字符流/ReaderDemoTest01.txt");
@@ -27,6 +33,9 @@ public class ReaderDemo {
 		reader.close();
 	}
 
+	/**
+	 * 读取全部内容
+	 */
 	@Test
 	public void testRead3() throws IOException {
 		Reader reader = new FileReader("src/main/java/me/yangjun/modules/base/输入输出/字符流/ReaderDemoTest01.txt");

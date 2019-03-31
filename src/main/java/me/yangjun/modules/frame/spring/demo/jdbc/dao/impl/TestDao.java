@@ -1,5 +1,7 @@
-package me.yangjun.modules.frame.spring.demo.jdbc.jdbctemplate;
+package me.yangjun.modules.frame.spring.demo.jdbc.dao.impl;
 
+import me.yangjun.modules.frame.spring.demo.jdbc.bean.TestBean;
+import me.yangjun.modules.frame.spring.demo.jdbc.dao.ITest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,15 +19,15 @@ public class TestDao implements ITest {
     private JdbcTemplate template;
 
     @Override
-    public void save() {
-        String sql = "insert into tb_test(name, sex) values('test','2')";
+    public void save(TestBean aTestBean) {
+        String sql = "insert into tb_test(name, sex) values('" + aTestBean.getName() + "' ,'" + aTestBean.getSex() + "')";
         template.update(sql);
     }
 
     @Override
     public void query(String id) {
         String sql = "select * from tb_test where id=?";
-        List<TestBean> testBeanList =  template.query(sql,new RowMapper<TestBean>(){
+        List<TestBean> testBeanList = template.query(sql, new RowMapper<TestBean>() {
             @Override
             public TestBean mapRow(ResultSet resultSet, int i) throws SQLException {
                 TestBean testBean = new TestBean();
@@ -34,7 +36,7 @@ public class TestDao implements ITest {
                 testBean.setSex(resultSet.getString("sex"));
                 return testBean;
             }
-        },id);
+        }, id);
         System.out.println(testBeanList);
     }
 }

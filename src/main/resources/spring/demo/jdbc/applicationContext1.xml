@@ -52,7 +52,7 @@
     <!--3.配置拦截哪些方法+事务的属性-->
     <aop:config>
         <aop:pointcut id="scarfServiceMethods"
-                      expression="execution(* me.yangjun.modules.frame.spring.demo.jdbc.sessionctrl.*(..) )"/>
+                      expression="execution(* me.yangjun.modules.frame.spring.demo.jdbc.service.sessionctrl.*(..) )"/>
         <aop:advisor advice-ref="scarfTxAdvice" pointcut-ref="scarfServiceMethods"></aop:advisor>
     </aop:config>
 </beans>

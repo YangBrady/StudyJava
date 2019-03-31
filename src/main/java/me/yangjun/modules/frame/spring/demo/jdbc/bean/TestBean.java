@@ -1,4 +1,4 @@
-package me.yangjun.modules.frame.spring.demo.jdbc.jdbctemplate;
+package me.yangjun.modules.frame.spring.demo.jdbc.bean;
 
 public class TestBean {
     private String id;
@@ -26,6 +26,14 @@ public class TestBean {
     }
 
     public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public TestBean() {
+    }
+
+    public TestBean(String name, String sex) {
+        this.name = name;
         this.sex = sex;
     }
 
