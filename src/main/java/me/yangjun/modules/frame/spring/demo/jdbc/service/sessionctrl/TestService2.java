@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
  * 事务控制
  */
 @Service
-public class TestService {
+public class TestService2 {
 
     @Autowired
     private TestDao testDao;
@@ -49,13 +49,8 @@ public class TestService {
      *                 REQUIRED:加入当前已有事务
      * rollbackFor ==> 遇到指定异常回滚
      */
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = java.lang.Throwable.class)
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Throwable.class)
     public void sessionRequired(TestBean aTestBean) {
-        this.testDao.save(aTestBean);
-    }
-
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = java.lang.Throwable.class)
-    public void sessionErrorRequired(TestBean aTestBean) {
         this.testDao.save(aTestBean);
         long a = 1 / 0;
         this.testDao.save(aTestBean);
@@ -66,7 +61,7 @@ public class TestService {
      * propagation ==> 事务传播级别
      *                 NOT_SUPPORTED:以非事务方式执行
      */
-    @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = java.lang.Throwable.class)
+    @Transactional(propagation = Propagation.NOT_SUPPORTED, rollbackFor = Throwable.class)
     public void sessionNotSupported(TestBean aTestBean) {
         this.testDao.save(aTestBean);
         long a = 1 / 0;

@@ -1,28 +1,36 @@
 package me.yangjun.modules.frame.spring.demo.mvc.action;
 
-import me.yangjun.modules.frame.spring.demo.mvc.dto.Department;
-import me.yangjun.modules.frame.spring.demo.mvc.dto.Food;
-import me.yangjun.modules.frame.spring.demo.mvc.dto.User;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.ServletRequestDataBinder;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.beans.PropertyEditorSupport;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+import me.yangjun.modules.frame.spring.demo.mvc.dto.Department;
+import me.yangjun.modules.frame.spring.demo.mvc.dto.Food;
+import me.yangjun.modules.frame.spring.demo.mvc.dto.User;
 
 /**
  * @author mooejun
@@ -33,9 +41,15 @@ import java.util.Date;
 @RequestMapping(value = "/frame/spring/demo/mvc")
 public class HelloAction {
 
-    @RequestMapping(value = "demo001")
-    public ModelAndView demo001(ModelAndView modelAndView) {
-        modelAndView.setViewName("modules/frame/spring/demo/mvc/hello");
+    @RequestMapping(value = "testPage")
+    public String testPage() {
+        return "modules/frame/spring/demo/mvc/testPage";
+    }
+    
+    @RequestMapping(value = "index")
+    public ModelAndView index(ModelAndView modelAndView) {
+        modelAndView.setViewName("modules/frame/spring/demo/mvc/index");
+//        modelAndView.addObject("message", "hello");
         return modelAndView;
     }
 
@@ -47,44 +61,53 @@ public class HelloAction {
     /**
      * 只允许GET请求
      */
-    @RequestMapping(value = "demo003", method = RequestMethod.GET)
-    public String demo003() {
-        return "modules/frame/spring/demo/mvc/hello";
+    @RequestMapping(value = "justGet", method = RequestMethod.GET)
+    public String justGet() {
+        return "modules/frame/spring/demo/mvc/index";
     }
 
     /**
      * 只允许POST请求
      */
-    @RequestMapping(value = "demo004", method = RequestMethod.POST)
-    public String demo004() {
-        return "modules/frame/spring/demo/mvc/hello";
+    @RequestMapping(value = "justPost", method = RequestMethod.POST)
+    public String justPost() {
+        return "modules/frame/spring/demo/mvc/index";
     }
 
     /**
      * 传统web参数
      */
-    @RequestMapping(value = "demo005")
-    public String demo005(HttpServletRequest request, HttpServletResponse response)
+    @RequestMapping(value = "redirect1")
+    public void redirect1(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String xm = request.getParameter("xm");
-        String nl = request.getParameter("nl");
-        System.out.println("xm=" + xm);
-        System.out.println("nl=" + nl);
-        //绑定到session域对象中
-        request.getSession().setAttribute("username", xm);
-        request.getSession().setAttribute("salary", nl);
-
-        // 重定向/jsp/success.jsp页面
-        // response.sendRedirect(request.getContextPath() + "/demo001");
-
+        // 绑定到session域对象中
+//        String message = request.getParameter("message");
+//        request.getSession().setAttribute("message", message);
         // 重定向
-        // return "redirect:modules/frame/spring/demo/mvc/hello";
+        response.sendRedirect(request.getContextPath() + "/frame/spring/demo/mvc/index");
+    }
 
+    @RequestMapping(value = "redirect2")
+    public String redirect2(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // 重定向
+        return "redirect:index";
+    }
+    
+    @RequestMapping(value = "dispatcher1")
+    public void dispatcher1(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        System.out.println(request.getParameter("message"));
         // 转发页面
-        // request.getRequestDispatcher("demo002").forward(request, response);
-
+        request.getRequestDispatcher("index").forward(request, response);
+    }
+    
+    @RequestMapping(value = "dispatcher2")
+    public String dispatcher2(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        System.out.println(request.getParameter("message"));
         // 转发(提倡)
-        return "modules/frame/spring/demo/mvc/hello";
+        return "modules/frame/spring/demo/mvc/index";
     }
 
     /**
@@ -97,22 +120,16 @@ public class HelloAction {
 
     @RequestMapping(value = "demo006_resp")
     public String demo006_resp(Model model, User user) {
-        System.out.println(user);
-        model.addAttribute("message", user.getUsername());
+        model.addAttribute("message", user);
         return "modules/frame/spring/demo/mvc/index";
     }
 
-
-    @RequestMapping(value = "demo006_01")
-    public String demo006_01() {
-        return "modules/frame/spring/demo/mvc/demo006_01";
-    }
-
+    /**
+     * 获取url上的参数
+     */
     @RequestMapping(value = "demo006_01_resp/{id}")
-    public String demo006_01_resp(Model model, User user, @PathVariable("id") String id) {
-        System.out.println("id=" + id);
-        System.out.println(user);
-        model.addAttribute("message", user.getUsername());
+    public String demo006_01_resp(Model model, @PathVariable("id") String id) {
+        model.addAttribute("message", id);
         return "modules/frame/spring/demo/mvc/index";
     }
 
