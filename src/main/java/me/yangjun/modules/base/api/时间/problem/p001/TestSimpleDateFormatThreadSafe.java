@@ -1,6 +1,7 @@
 package me.yangjun.modules.base.api.时间.problem.p001;
 
 import java.text.ParseException;
+import java.util.Date;
 
 /**
  * @author mooejun
@@ -16,7 +17,8 @@ public class TestSimpleDateFormatThreadSafe extends Thread {
                 e1.printStackTrace();
             }
             try {
-                System.out.println(this.getName() + ":" + DateUtilError.parse("2019-04-19"));
+//                System.out.println(this.getName() + ":" + DateUtilError.parse("2019-04-19"));
+                System.out.println(this.getName() + ":" + DateUtilError.formatDate(new Date()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

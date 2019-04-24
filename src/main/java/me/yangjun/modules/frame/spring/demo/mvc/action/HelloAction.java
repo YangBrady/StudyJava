@@ -45,11 +45,11 @@ public class HelloAction {
     public String testPage() {
         return "modules/frame/spring/demo/mvc/testPage";
     }
-    
+
     @RequestMapping(value = "index")
     public ModelAndView index(ModelAndView modelAndView) {
         modelAndView.setViewName("modules/frame/spring/demo/mvc/index");
-//        modelAndView.addObject("message", "hello");
+        // modelAndView.addObject("message", "hello");
         return modelAndView;
     }
 
@@ -75,25 +75,18 @@ public class HelloAction {
     }
 
     /**
-     * 传统web参数
+     * 重定向  第一种实现方式
      */
     @RequestMapping(value = "redirect1")
-    public void redirect1(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // 绑定到session域对象中
-//        String message = request.getParameter("message");
-//        request.getSession().setAttribute("message", message);
-        // 重定向
+    public void redirect1(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect(request.getContextPath() + "/frame/spring/demo/mvc/index");
     }
 
     @RequestMapping(value = "redirect2")
-    public String redirect2(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // 重定向
+    public String redirect2(HttpServletRequest request, HttpServletResponse response) {
         return "redirect:index";
     }
-    
+
     @RequestMapping(value = "dispatcher1")
     public void dispatcher1(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -101,10 +94,9 @@ public class HelloAction {
         // 转发页面
         request.getRequestDispatcher("index").forward(request, response);
     }
-    
+
     @RequestMapping(value = "dispatcher2")
-    public String dispatcher2(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public String dispatcher2(HttpServletRequest request, HttpServletResponse response) {
         System.out.println(request.getParameter("message"));
         // 转发(提倡)
         return "modules/frame/spring/demo/mvc/index";
@@ -290,6 +282,7 @@ public class HelloAction {
     public String uploadDemo001() {
         return "modules/frame/spring/demo/mvc/upload_demo001";
     }
+
     @RequestMapping(value = "upload/demo001_resp", method = RequestMethod.POST)
     public String uploadDemo001_resp(Model model, HttpServletRequest req) throws Exception {
         MultipartHttpServletRequest mreq = (MultipartHttpServletRequest) req;
@@ -317,9 +310,10 @@ public class HelloAction {
         System.out.println("in testExceptionHandler");
         return modelAndView;
     }
+
     @RequestMapping("errorTest/demo001")
     public String errorTestDemo001() {
-        System.out.println(1/0);
+        System.out.println(1 / 0);
         return "modules/frame/spring/demo/mvc/index";
     }
 

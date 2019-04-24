@@ -23,13 +23,16 @@ public class TestDemo {
     @Test
     public void formatTimeB() throws Exception {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        // Date d = df.parse("2016-10-20");//将字符串转换成时间
-        String str = df.format(new Date());// 将时间转换成字符串
+        //将字符串转换成时间
+        // Date d = df.parse("2016-10-20");
+        // 将时间转换成字符串
+        String str = df.format(new Date());
     }
 
     @Test
     public void dealTimeA() {
-        Calendar cal = Calendar.getInstance(); // Calendar是抽象类
+        // Calendar是抽象类
+        Calendar cal = Calendar.getInstance();
         System.out.println(cal.get(Calendar.YEAR));
 
         cal.setTime(new Date());
@@ -43,8 +46,7 @@ public class TestDemo {
     public void dealTimeB() {
         GregorianCalendar gc = new GregorianCalendar();
         // gc.setTime(new Date());
-        // GregorianCalendar gc2 = new
-        // GregorianCalendar(2016,10,20);//year,month,day
+        // GregorianCalendar gc2 = new GregorianCalendar(2016,10,20);
         int year = gc.get(Calendar.YEAR);
         int month = gc.get(Calendar.MONTH);
         System.out.println(year + " " + month);
