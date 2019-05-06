@@ -24,23 +24,24 @@ public class MyString {
 
 }
 
-class MyStringBuilder{ //速度最快
-    public void doSomething(){
+class MyStringBuilder { //速度最快
+    public void doSomething() {
         StringBuilder str = new StringBuilder("Hello");
         System.out.println(str.toString());
         str.append('!');
         System.out.println(str);
-        str.delete(0,1);
+        str.delete(0, 1);
         System.out.println(str);
     }
 }
-class MyStringBuffer{ //支持多线程
-    public void doSomething(){
+
+class MyStringBuffer { //支持多线程
+    public void doSomething() {
         StringBuffer str = new StringBuffer("Hello");
         System.out.println(str.toString());
         str.append('!');
         System.out.println(str);
-        str.delete(0,1);
+        str.delete(0, 1);
         System.out.println(str);
     }
 }

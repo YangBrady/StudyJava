@@ -11,7 +11,7 @@
         <welcome-file>default.htm</welcome-file>
         <welcome-file>default.jsp</welcome-file>
     </welcome-file-list>
-    
+
     <!-- 针对SpringMVC的配置 -->
     <servlet>
         <servlet-name>springServlet</servlet-name>
