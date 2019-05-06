@@ -2,6 +2,7 @@ package me.yangjun.modules.frame.spring.demo.mvc.action;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,21 +17,26 @@ import java.io.IOException;
 @RequestMapping(value = "/frame/spring/demo/mvc")
 public class JumpAction {
 
+    @RequestMapping(value = "jump")
+    public ModelAndView index(ModelAndView modelAndView) {
+        modelAndView.setViewName("modules/frame/spring/demo/mvc/jump");
+        return modelAndView;
+    }
+
     /**
      * 转发
+     * 跳转到方法上
+     * 转发是不会调用被ModelAttribute注解在方法上的方法
      */
     @RequestMapping(value = "forward1")
     public void forward1(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("index").forward(request, response);
+        request.getRequestDispatcher("jump").forward(request, response);
     }
 
-    /**
-     * 转发(提倡)
-     */
     @RequestMapping(value = "forward2")
     public String forward2(HttpServletRequest request, HttpServletResponse response) {
-        return "modules/frame/spring/demo/mvc/index";
+        return "modules/frame/spring/demo/mvc/jump";
     }
 
     /**
