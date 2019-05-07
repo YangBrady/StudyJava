@@ -1,0 +1,833 @@
+{
+	"info": {
+		"_postman_id": "9067ecd7-4e3e-4d39-85cd-b09064764172",
+		"name": "StudyJava",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SpringMVC",
+			"item": [
+				{
+					"name": "DataBindAction",
+					"item": [
+						{
+							"name": "justGet",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/justGet",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"justGet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "justPost",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/justPost",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"justPost"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "接收JavaBean",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "钉钉",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/receiveByJavaBean",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"receiveByJavaBean"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取url上的参数",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/receiveUrlParam/222",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"receiveUrlParam",
+										"222"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RequestParam注解",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "sex",
+											"value": "22",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/requestParam",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"requestParam"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ModelAttribute注解 - 放在参数上",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "11",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "22",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/modelAttributeAtParam",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"modelAttributeAtParam"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ModelAttribute注解 - 放在方法上",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/modelAttributeAtFunction",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"modelAttributeAtFunction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "@RequestBody json",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"id\": \"admin\",\"username\": \"admin123\"}"
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/requestBody",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"requestBody"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "@RequestBody xml",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/xml",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<user>\n    <id>1</id>\n    <username>哈哈</username>\n</user>"
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/requestBody",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"requestBody"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "@ResponseBody",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/responseBody",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"responseBody"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "DateConvertAction",
+					"item": [
+						{
+							"name": "使用InitBinder来处理Date类型的参数",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "哈哈",
+											"type": "text"
+										},
+										{
+											"key": "season",
+											"value": "春",
+											"type": "text"
+										},
+										{
+											"key": "productDate",
+											"value": "2019-02-26",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/str2date",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"str2date"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "ExceptionAction",
+					"item": [
+						{
+							"name": "@ExceptionHandler",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/exceptionHandlerTest",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"exceptionHandlerTest"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "FileuploadAction",
+					"item": [
+						{
+							"name": "文件上传",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": ""
+										}
+									]
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/upload",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"upload"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "JumpAction",
+					"item": [
+						{
+							"name": "转发1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "message",
+											"value": "1111",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/forward1",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"forward1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "转发2",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "message",
+											"value": "1111",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/forward2",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"forward2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "重定向1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/redirect1",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"redirect1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "重定向2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/redirect2",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"redirect2"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "RESTFulAction",
+					"item": [
+						{
+							"name": "GET 列表",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/rest/user/",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"rest",
+										"user",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET 单个",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/rest/user/1",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"rest",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST 创建",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"1\",\n    \"username\": \"哈哈\"\n}"
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/rest/user/",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"rest",
+										"user",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT 更新",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"1\",\n    \"username\": \"哈哈1\"\n}"
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/rest/user/1",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"rest",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE 单个",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/rest/user/1",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"rest",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DELETE 所有",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/rest/user/",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"rest",
+										"user",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "BeanValidAction",
+					"item": [
+						{
+							"name": "beanValid",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{StudyJava}}/frame/spring/demo/mvc/beanValid/",
+									"host": [
+										"{{StudyJava}}"
+									],
+									"path": [
+										"frame",
+										"spring",
+										"demo",
+										"mvc",
+										"beanValid",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}

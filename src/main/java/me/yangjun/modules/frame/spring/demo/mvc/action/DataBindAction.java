@@ -178,7 +178,7 @@ public class DataBindAction {
      */
     @RequestMapping("responseBody")
     @ResponseBody
-    public User responseBodyDemo001() {
+    public User responseBody() {
         User user = new User("1", "哈哈");
         System.out.println(user);
         return user;
