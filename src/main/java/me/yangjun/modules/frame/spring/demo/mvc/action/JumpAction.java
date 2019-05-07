@@ -52,7 +52,7 @@ public class JumpAction {
         return "redirect:index";
     }
 
-    /**
+    /*
      * request中参数（parameter）和属性（Attribute）的区别：
      *
      * 不同点：
