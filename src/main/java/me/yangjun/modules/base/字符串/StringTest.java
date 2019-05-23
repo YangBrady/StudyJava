@@ -13,5 +13,8 @@ public class StringTest {
         String a = "abcd.txt";
         String b = a.substring(0, a.lastIndexOf("."));
         System.out.println(b);
+        System.out.println(a.indexOf("abcd"));
+        String c = a.substring(a.indexOf("abcd"));
+        System.out.println(c);
     }
 }
