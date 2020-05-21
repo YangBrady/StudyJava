@@ -5,7 +5,7 @@ import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Component
-@Aspect//指定为切面类
+@Aspect // 指定为切面类
 public class AopSurface {
 
     // 前置通知 : 在执行目标方法之前执行
@@ -14,13 +14,11 @@ public class AopSurface {
         System.out.println("开始事务");
     }
 
-    // 后置/最终通知：在执行目标方法之后执行  【无论是否出现异常最终都会执行】
+    // 后置/最终通知：在执行目标方法之后执行 【无论是否出现异常最终都会执行】
     @After("execution(* me.yangjun.modules.frame.spring.demo.aop.annotation.*.*(..))")
     public void close() {
         System.out.println("关闭事务");
     }
-
-
 
     // 指定切入点表达式，拦截哪个类的哪些方法
     @Pointcut("execution(* me.yangjun.modules.frame.spring.demo.aop.annotation.*.*(..))")
@@ -44,7 +42,7 @@ public class AopSurface {
     @Around("pt()")
     public void around(ProceedingJoinPoint pjp) throws Throwable {
         System.out.println("环绕前....");
-        pjp.proceed();  // 执行目标方法
+        pjp.proceed(); // 执行目标方法
         System.out.println("环绕后....");
     }
 }

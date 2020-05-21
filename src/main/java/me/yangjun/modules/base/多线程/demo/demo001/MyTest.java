@@ -1,4 +1,4 @@
-package me.yangjun.modules.base.多线程.demo001;
+package me.yangjun.modules.base.多线程.demo.demo001;
 
 import java.util.List;
 import java.util.concurrent.BlockingQueue;

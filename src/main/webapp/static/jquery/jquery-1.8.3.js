@@ -1197,7 +1197,7 @@ jQuery.extend({
 			// the count of uncompleted subordinates
 			remaining = length !== 1 || ( subordinate && jQuery.isFunction( subordinate.promise ) ) ? length : 0,
 
-			// the master Deferred. If resolveValues consist of only a single Deferred, just use that.
+			// the master Deferred. If resolveValues consist of only a oneway Deferred, just use that.
 			deferred = remaining === 1 ? subordinate : jQuery.Deferred(),
 
 			// Update function for both resolve and progress values
@@ -3459,7 +3459,7 @@ if ( !jQuery.support.changeBubbles ) {
 if ( !jQuery.support.focusinBubbles ) {
 	jQuery.each({ focus: "focusin", blur: "focusout" }, function( orig, fix ) {
 
-		// Attach a single capturing handler while someone wants focusin/focusout
+		// Attach a oneway capturing handler while someone wants focusin/focusout
 		var attaches = 0,
 			handler = function( event ) {
 				jQuery.event.simulate( fix, event.target, jQuery.event.fix( event ), true );
@@ -7158,7 +7158,7 @@ jQuery.each({
 		expand: function( value ) {
 			var i,
 
-				// assumes a single number if not a string
+				// assumes a oneway number if not a string
 				parts = typeof value === "string" ? value.split(" ") : [ value ],
 				expanded = {};
 
@@ -7583,7 +7583,7 @@ jQuery.extend({
 		},
 
 		// List of data converters
-		// 1) key format is "source_type destination_type" (a single space in-between)
+		// 1) key format is "source_type destination_type" (a oneway space in-between)
 		// 2) the catchall symbol "*" can be used for source_type
 		converters: {
 

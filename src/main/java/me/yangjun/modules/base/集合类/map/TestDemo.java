@@ -1,7 +1,10 @@
 package me.yangjun.modules.base.集合类.map;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +12,7 @@ import java.util.Map;
  * @author mooejun
  * @since 2019/4/22
  */
+@Slf4j
 public class TestDemo {
 
     /**
@@ -22,20 +26,36 @@ public class TestDemo {
     }
 
     /**
-     * Java8新特性 - merge
-     * 通过lambda表达式
+     * Java8新特性 - merge 通过lambda表达式
      */
     @Test
     public void merge() {
         Map<String, String> testMap = new HashMap<>();
         testMap.put("a", "aaa");
         String str = "哈哈哈";
-//        if (testMap.get("a") == null) {
-//            testMap.put("a", str);
-//        } else {
-//            testMap.put("a", testMap.get("a") + "," + str);
-//        }
-        testMap.merge("a", str, (a, b) -> a + "," + b); // 效果和注释是一样的
+        // if (testMap.get("a") == null) {
+        // testMap.put("a", str);
+        // } else {
+        // testMap.put("a", testMap.get("a") + "," + str);
+        // }
+
+        // 效果和注释是一样的
+        testMap.merge("a", str, (a, b) -> a + "," + b);
         System.out.println(testMap);
+    }
+
+    /**
+     * Put测试
+     */
+    @Test
+    public void testPut() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Map<String, String> testMap = new HashMap<>();
+        Method capacity = testMap.getClass().getDeclaredMethod("capacity");
+        capacity.setAccessible(true);
+        Integer realCapacity = (Integer) capacity.invoke(testMap);
+
+        log.info("put之前：{}", realCapacity);
+        testMap.put("a", "aaa");
+        log.info("put之后：{}", realCapacity);
     }
 }

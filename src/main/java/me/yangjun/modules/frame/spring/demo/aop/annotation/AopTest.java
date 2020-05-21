@@ -12,7 +12,7 @@ public class AopTest {
     @Test
     public void testDemo001() {
         ApplicationContext ac =
-                new ClassPathXmlApplicationContext("classpath*:spring/demo/aop/annotation/applicationContext.xml");
+            new ClassPathXmlApplicationContext("classpath*:spring/demo/aop/annotation/applicationContext.xml");
         //这里得到的是代理对象....
         IUser iUser = (IUser) ac.getBean("userDao");
         System.out.println(iUser.getClass());

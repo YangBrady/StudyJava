@@ -1,5 +1,6 @@
 package me.yangjun.modules.base.api.时间;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.text.DateFormat;
@@ -12,6 +13,7 @@ import java.util.GregorianCalendar;
 /**
  * Created by 杨峻 on 2016/10/20.
  */
+@Slf4j
 public class TestDemo {
 
     @Test
@@ -60,4 +62,15 @@ public class TestDemo {
         System.out.println(gc.getTime());
     }
 
+    @Test
+    public void testRollAndAdd() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2020, Calendar.MAY, 7);
+        log.info(sdf.format(calendar.getTime())); // 2020-05-07
+
+        //calendar.add(Calendar.MONTH, 10); // 2021-03-07
+        calendar.roll(Calendar.MONTH, 10); // 2020-03-07
+        log.info(sdf.format(calendar.getTime()));
+    }
 }

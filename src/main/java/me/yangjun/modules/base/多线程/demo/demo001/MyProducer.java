@@ -1,4 +1,4 @@
-package me.yangjun.modules.base.多线程.demo001;
+package me.yangjun.modules.base.多线程.demo.demo001;
 
 
 import java.util.ArrayList;
@@ -28,7 +28,13 @@ public class MyProducer implements Runnable {
 
         try {
             queue.put(data);
-            Thread.sleep(5 * 1000);
+            Thread.sleep(1 * 1000);
+            queue.put(data);
+            Thread.sleep(2 * 1000);
+            queue.put(data);
+            Thread.sleep(4 * 1000);
+            queue.put(data);
+            Thread.sleep(6 * 1000);
             queue.put(data);
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -9,11 +9,11 @@ import org.junit.Test;
 public class GenericClass01Test {
     @Test
     public void demo() {
-        GenericClass01<String> gc1 = new GenericClass01<String>();
+        GenericClass01<String> gc1 = new GenericClass01<>();
         gc1.setKey("aaa");
         System.out.println(gc1.getKey());
 
-        GenericClass01<Integer> gc2 = new GenericClass01<Integer>();
+        GenericClass01<Integer> gc2 = new GenericClass01<>();
         gc2.setKey(123456);
         System.out.println(gc2.getKey());
     }

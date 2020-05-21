@@ -9,13 +9,12 @@ import org.junit.Test;
 
 /**
  * 异常链
- * 
+ *
  * @author yangjun
  */
 public class ExceptionLinkDemo {
 
-	@Test
-	private static List<Integer> getInputData() {
+	public static List<Integer> getInputData() {
 		List<Integer> intList = new ArrayList<Integer>();
 		Scanner scanner = new Scanner(System.in);
 		try {

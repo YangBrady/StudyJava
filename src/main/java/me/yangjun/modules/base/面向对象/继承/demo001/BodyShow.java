@@ -1,4 +1,4 @@
-package me.yangjun.modules.base.面向对象.继承;
+package me.yangjun.modules.base.面向对象.继承.demo001;
 
 public interface BodyShow {
 	public abstract void showCtrl1();
