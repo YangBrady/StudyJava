@@ -25,11 +25,11 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <spring.version>5.1.6.RELEASE</spring.version>
+        <spring.version>5.1.13.RELEASE</spring.version>
         <validator.version>6.0.13.Final</validator.version>
         <junit.version>4.11</junit.version>
         <dom4j.version>1.6.1</dom4j.version>
-        <jackson.version>2.9.8</jackson.version>
+        <jackson.version>2.10.4</jackson.version>
 
         <slf4j.version>1.7.25</slf4j.version>
 
