@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+	       http://www.springframework.org/schema/beans
+	       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <!-- **************************************** 注入方式 **************************************** -->
+    <!-- ******************** 通过构造函数注入 ******************** -->
+    <!-- 通过参数索引 -->
+    <bean id="diMalePersonByIndex1"
+          class="me.yangjun.study.di.MalePerson">
+        <constructor-arg index="0" value="程序员"/>
+        <constructor-arg index="1" value="3"/>
+    </bean>
+    <!-- 通过参数类型 -->
+    <bean id="diMalePersonByType1"
+          class="me.yangjun.study.di.MalePerson">
+        <constructor-arg type="java.lang.String" value="程序员"/>
+        <constructor-arg type="int" value="3"/>
+    </bean>
+    <bean id="diMalePersonByType2"
+          class="me.yangjun.study.di.MalePerson">
+        <constructor-arg type="java.lang.String" value="程序员"/>
+        <constructor-arg type="int" value="3"/>
+        <constructor-arg type="java.lang.String" value="广东深圳"/>
+    </bean>
+    <!-- 通过参数名 -->
+    <bean id="diMalePersonByName1"
+          class="me.yangjun.study.di.MalePerson">
+        <constructor-arg name="work" value="程序员"/>
+        <constructor-arg name="workYear" value="3"/>
+        <constructor-arg name="workPlace" value="广东深圳"/>
+    </bean>
+
+    <!-- 静态工厂 -->
+    <bean id="diMalePersonFactoryByIndex1"
+          class="me.yangjun.study.di.MalePersonFactory"
+          factory-method="newInstance">
+        <constructor-arg index="0" value="程序员"/>
+        <constructor-arg index="1" value="3"/>
+        <constructor-arg index="2" value="广东深圳"/>
+    </bean><!-- 通过参数类型和通过参数名跟上面的是差不多的 -->
+
+    <!-- 实例工厂 -->
+    <bean id="diMalePersonFactory2Bean"
+          class="me.yangjun.study.di.MalePersonFactory2"/>
+    <bean id="diMalePersonFactory2ByIndex1"
+          factory-bean="diMalePersonFactory2Bean" factory-method="newInstance">
+        <constructor-arg index="0" value="程序员"/>
+        <constructor-arg index="1" value="3"/>
+        <constructor-arg index="2" value="广东深圳"/>
+    </bean><!-- 通过参数类型和通过参数名跟上面的是差不多的 -->
+
+
+    <!-- ******************** 通过setting注入 ******************** -->
+    <bean id="diMalePersonBySetting1" class="me.yangjun.study.di.MalePerson">
+        <property name="work" value="程序员"/>
+        <property name="workYear" value="5"/>
+        <property name="workPlace" value="湖北武汉"/>
+    </bean>
+    <bean id="myPet" class="me.yangjun.study.di.Pet"/>
+    <bean id="diMalePersonBySetting2" class="me.yangjun.study.di.MalePerson">
+        <property name="work" value="程序员"/>
+        <property name="workYear" value="5"/>
+        <property name="workPlace" value="湖北武汉"/>
+    </bean>
+    <bean id="diMalePersonBySetting3" class="me.yangjun.study.di.MalePerson">
+        <property name="work" value="程序员"/>
+        <property name="workYear" value="5"/>
+        <property name="workPlace" value="湖北武汉"/>
+        <property name="pet" ref="myPet"/>
+    </bean>
+    <!-- 使用p命名空间简化配置 -->
+    <bean id="diMalePersonBySetting4" class="me.yangjun.study.di.MalePerson" p:work="程序员" p:workYear="5"
+          p:workPlace="湖北武汉" p:pet-ref="myPet"/>
+
+
+    <!-- **************************************** 注入类型 **************************************** -->
+    <bean id="diMalePersonSomething1" class="me.yangjun.study.di.MalePerson">
+        <property name="work" value="程序员"/>
+        <property name="workYear" value="5"/>
+        <property name="workPlace" value="湖北武汉"/>
+
+        <property name="pet" ref="myPet"/>
+
+        <property name="hatePets">
+            <array>
+                <ref bean="myPet"/>
+                <ref bean="myPet"/>
+            </array>
+        </property>
+        <property name="hateNumber">
+            <array>
+                <value>1</value>
+                <value>2</value>
+            </array>
+        </property>
+
+        <property name="lovePets">
+            <list>
+                <ref bean="myPet"/>
+                <ref bean="myPet"/>
+            </list>
+        </property>
+        <property name="loveNumber">
+            <list>
+                <value>1a</value>
+                <value>2b</value>
+            </list>
+        </property>
+
+        <property name="petHis">
+            <map key-type="java.lang.String" value-type="me.yangjun.study.di.Pet">
+                <entry key="1" value-ref="myPet"/>
+                <entry key="2" value-ref="myPet"/>
+            </map>
+        </property>
+        <property name="numberHis">
+            <map>
+                <entry key="1" value="a"/>
+                <entry key="2" value="b"/>
+            </map>
+        </property>
+    </bean>
+
+
+</beans>
