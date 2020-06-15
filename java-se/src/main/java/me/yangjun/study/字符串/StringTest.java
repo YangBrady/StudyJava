@@ -8,13 +8,14 @@ import org.junit.Test;
  */
 public class StringTest {
 
-    @Test
-    public void demo001() {
-        String a = "abcd.txt";
-        String b = a.substring(0, a.lastIndexOf("."));
-        System.out.println(b);
-        System.out.println(a.indexOf("abcd"));
-        String c = a.substring(a.indexOf("abcd"));
-        System.out.println(c);
-    }
+	@Test
+	public void demo001() {
+		String a = "abcd.txt";
+		String b = a.substring(0, a.lastIndexOf("."));
+		System.out.println(b);
+
+		System.out.println(a.indexOf("abcd"));
+
+		System.out.println(a.substring(a.indexOf("abcd")));
+	}
 }

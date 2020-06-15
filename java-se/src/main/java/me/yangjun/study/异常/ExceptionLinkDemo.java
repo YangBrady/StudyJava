@@ -13,17 +13,14 @@ import java.util.Scanner;
 public class ExceptionLinkDemo {
 
 	public static List<Integer> getInputData() {
-		List<Integer> intList = new ArrayList<Integer>();
-		Scanner scanner = new Scanner(System.in);
-		try {
+		List<Integer> intList = new ArrayList<>();
+		try (Scanner scanner = new Scanner(System.in)) {
 			int numberA = scanner.nextInt();
 			int numberB = scanner.nextInt();
 			intList.add(numberA);
 			intList.add(numberB);
 		} catch (InputMismatchException e) {
 			throw e;
-		} finally {
-			scanner.close();
 		}
 		return intList;
 	}

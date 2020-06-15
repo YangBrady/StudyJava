@@ -9,6 +9,6 @@ public class IntegerDemo {
 		int a = Integer.MAX_VALUE;
 		int b = Integer.MAX_VALUE;
 		int sum = a + b;
-		System.out.println("a=" + a + ", sum=" + sum);
+		System.out.println("a=" + a + ", sum=" + sum); // a=2147483647, sum=-2
 	}
 }
