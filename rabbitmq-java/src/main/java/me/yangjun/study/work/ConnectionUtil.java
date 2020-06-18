@@ -17,10 +17,6 @@ public class ConnectionUtil {
     private final static String RBAATIEMQ_USER = "mqroot";
     private final static String RBAATIEMQ_PASSWORD = "mqroot";
 
-    private final static String EXCHANGE_NAME = "WORK_EXCHANGE";
-    private final static String QUEUE_NAME = "WORK_QUEUE";
-    private final static String ROUTING_KEY = "WORK_ROUTING_KEY";
-
     static Connection getConnection() throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         // 连接 IP
@@ -34,26 +30,5 @@ public class ConnectionUtil {
         factory.setPassword(RBAATIEMQ_PASSWORD);
         // 建立连接
         return factory.newConnection();
-    }
-
-    static Channel getChannel(String queueName, String exchangeName, String exchangeType, String routingKey)
-            throws Exception {
-        // 建立连接
-        Connection conn = getConnection();
-        // 创建消息通道
-        Channel channel = conn.createChannel();
-
-        // 声明交换机（已经存在的话就不会再创建）
-        // String exchange, String type, boolean durable, boolean autoDelete, Map<String, Object> arguments
-        channel.exchangeDeclare(exchangeName, exchangeType, false, false, null);
-
-        // 声明队列（已经存在的话就不会再创建）
-        // String queue, boolean durable, boolean exclusive, boolean autoDelete, Map<String, Object> arguments
-        channel.queueDeclare(queueName, false, false, false, null);
-
-        // 绑定队列和交换机
-        channel.queueBind(queueName, exchangeName, routingKey);
-
-        return channel;
     }
 }

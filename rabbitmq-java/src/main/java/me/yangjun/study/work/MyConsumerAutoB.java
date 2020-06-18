@@ -14,12 +14,25 @@ import java.nio.charset.StandardCharsets;
 
 @Slf4j
 public class MyConsumerAutoB {
-    private final static String EXCHANGE_NAME = "SIMPLE_EXCHANGE";
-    private final static String QUEUE_NAME = "SIMPLE_QUEUE";
-    private final static String ROUTING_KEY = "SIMPLE_ROUTING_KEY";
+    private final static String EXCHANGE_NAME = "WORK_EXCHANGE";
+    private final static String EXCHANGE_TYPE = "direct";
+    private final static String QUEUE_NAME = "WORK_QUEUE";
+    private final static String ROUTING_KEY = "WORK_ROUTING_KEY";
 
     public static void main(String[] args) throws Exception {
-        Channel channel = ConnectionUtil.getChannel(QUEUE_NAME, "direct", EXCHANGE_NAME, ROUTING_KEY);
+        // 建立连接
+        Connection conn = ConnectionUtil.getConnection();
+        // 创建消息通道
+        Channel channel = conn.createChannel();
+
+        // 声明交换机（已经存在的话就不会再创建）
+        channel.exchangeDeclare(EXCHANGE_NAME, EXCHANGE_TYPE, false, false, null);
+
+        // 声明队列（已经存在的话就不会再创建）
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+
+        // 绑定队列和交换机
+        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, ROUTING_KEY);
         log.info(" Waiting for message....");
 
         // 创建消费者

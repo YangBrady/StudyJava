@@ -1,4 +1,4 @@
-package me.yangjun.study.pubsub;
+package me.yangjun.study.topic;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

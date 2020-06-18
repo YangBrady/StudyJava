@@ -12,23 +12,26 @@ import com.rabbitmq.client.Connection;
  */
 public class MyProducer {
 
-    public static void main(String[] args) throws Exception {
+	private final static String EXCHANGE_NAME = "PUBSUB_EXCHANGE";
+	private final static String EXCHANGE_TYPE = "fanout";
+	private final static String ROUTING_KEY = "";
 
-        // 建立连接
-        Connection conn = ConnectionUtil.getConnection();
-        // 创建消息通道
-        Channel channel = conn.createChannel();
+	public static void main(String[] args) throws Exception {
 
-        // 声明交换机（已经存在的话就不会再创建）
-        channel.exchangeDeclare(ConnectionUtil.EXCHANGE_NAME, ConnectionUtil.EXCHANGE_TYPE,
-                false, false, null);
+		// 建立连接
+		Connection conn = ConnectionUtil.getConnection();
+		// 创建消息通道
+		Channel channel = conn.createChannel();
 
-        // 发送消息
-        String msg = "Hello world!, 你好，Rabbit MQ";
-        channel.basicPublish(ConnectionUtil.EXCHANGE_NAME, ConnectionUtil.ROUTING_KEY,
-                null, msg.getBytes());
+		// 声明交换机（已经存在的话就不会再创建）
+		channel.exchangeDeclare(EXCHANGE_NAME, EXCHANGE_TYPE,
+				false, false, null);
 
-        channel.close();
-        conn.close();
-    }
+		// 发送消息
+		String msg = "Hello world!, 你好，Rabbit MQ";
+		channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, null, msg.getBytes());
+
+		channel.close();
+		conn.close();
+	}
 }

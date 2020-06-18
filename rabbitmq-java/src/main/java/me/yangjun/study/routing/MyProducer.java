@@ -12,30 +12,32 @@ import com.rabbitmq.client.Connection;
  */
 public class MyProducer {
 
-    public static void main(String[] args) throws Exception {
+	private final static String EXCHANGE_NAME = "ROUTING_EXCHANGE";
+	private final static String EXCHANGE_TYPE = "direct";
 
-        // 建立连接
-        Connection conn = ConnectionUtil.getConnection();
-        // 创建消息通道
-        Channel channel = conn.createChannel();
+	public static void main(String[] args) throws Exception {
 
-        // 声明交换机（已经存在的话就不会再创建）
-        channel.exchangeDeclare(ConnectionUtil.EXCHANGE_NAME, ConnectionUtil.EXCHANGE_TYPE,
-                false, false, null);
+		// 建立连接
+		Connection conn = ConnectionUtil.getConnection();
+		// 创建消息通道
+		Channel channel = conn.createChannel();
 
-        // 发送消息
-        String msgAdd = "新增";
-        String msgDelete = "删除";
-        String msgModify = "修改";
-        String msgQuery = "查询";
-        for (int i = 0; i < 3; i++) {
-            channel.basicPublish(ConnectionUtil.EXCHANGE_NAME, "add", null, msgAdd.getBytes());
-            channel.basicPublish(ConnectionUtil.EXCHANGE_NAME, "delete", null, msgDelete.getBytes());
-            channel.basicPublish(ConnectionUtil.EXCHANGE_NAME, "modify", null, msgModify.getBytes());
-            channel.basicPublish(ConnectionUtil.EXCHANGE_NAME, "query", null, msgQuery.getBytes());
-        }
+		// 声明交换机（已经存在的话就不会再创建）
+		channel.exchangeDeclare(EXCHANGE_NAME, EXCHANGE_TYPE, false, false, null);
 
-        channel.close();
-        conn.close();
-    }
+		// 发送消息
+		String msgAdd = "新增";
+		String msgDelete = "删除";
+		String msgModify = "修改";
+		String msgQuery = "查询";
+		for (int i = 0; i < 3; i++) {
+			channel.basicPublish(EXCHANGE_NAME, "add", null, msgAdd.getBytes());
+			channel.basicPublish(EXCHANGE_NAME, "delete", null, msgDelete.getBytes());
+			channel.basicPublish(EXCHANGE_NAME, "modify", null, msgModify.getBytes());
+			channel.basicPublish(EXCHANGE_NAME, "query", null, msgQuery.getBytes());
+		}
+
+		channel.close();
+		conn.close();
+	}
 }
