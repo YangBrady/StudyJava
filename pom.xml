@@ -16,6 +16,7 @@
         <module>xml-jaxb</module>
         <module>xml-dom</module>
         <module>spring-mvc</module>
+        <module>rabbitmq-java</module>
     </modules>
     <packaging>pom</packaging>
 

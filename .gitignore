@@ -32,3 +32,5 @@ StudyJava.iml
 
 \.settings/
 .vscode/
+/rabbitmq-java/target/
+/java-se/target/classes/
