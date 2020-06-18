@@ -2,7 +2,6 @@ package me.yangjun.study.work;
 
 import com.rabbitmq.client.*;
 import lombok.extern.slf4j.Slf4j;
-import me.yangjun.study.utils.ConnectionUtil;
 
 import java.nio.charset.StandardCharsets;
 
@@ -43,6 +42,6 @@ public class MyConsumerAutoB {
         };
 
         // 开始获取消息
-        channel.basicConsume(QUEUE_NAME, true, consumer);
+        channel.basicConsume(QUEUE_NAME, false, consumer);
     }
 }

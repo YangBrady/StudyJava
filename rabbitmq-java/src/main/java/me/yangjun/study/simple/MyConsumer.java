@@ -2,7 +2,6 @@ package me.yangjun.study.simple;
 
 import com.rabbitmq.client.*;
 import lombok.extern.slf4j.Slf4j;
-import me.yangjun.study.utils.ConnectionUtil;
 
 import java.nio.charset.StandardCharsets;
 

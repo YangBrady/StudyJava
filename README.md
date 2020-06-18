@@ -55,3 +55,4 @@
     * dom
     * dom4j
     * jaxb
+* RabbitMQ

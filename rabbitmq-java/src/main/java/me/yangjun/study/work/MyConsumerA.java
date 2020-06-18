@@ -2,8 +2,8 @@ package me.yangjun.study.work;
 
 import com.rabbitmq.client.*;
 import lombok.extern.slf4j.Slf4j;
-import me.yangjun.study.utils.ConnectionUtil;
 
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -22,7 +22,7 @@ public class MyConsumerA {
         log.info(" Waiting for message....");
 
         // 同一时刻服务器只会发一条消息给消费者
-        //channel.basicQos(1);
+        channel.basicQos(1);
 
         // 创建消费者
         Consumer consumer = new DefaultConsumer(channel) {
@@ -30,7 +30,7 @@ public class MyConsumerA {
 
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties,
-                                       byte[] body) {
+                                       byte[] body) throws IOException {
                 String msg = new String(body, StandardCharsets.UTF_8);
                 i++;
                 log.info("MyConsumerAutoA Received {}, message: {}, consumerTag: {}, deliveryTag: {}",
@@ -39,11 +39,14 @@ public class MyConsumerA {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                } finally {
+                    // 返回确认状态
+                    channel.basicAck(envelope.getDeliveryTag(), false);
                 }
             }
         };
 
         // 开始获取消息
-        channel.basicConsume(QUEUE_NAME, true, consumer);
+        channel.basicConsume(QUEUE_NAME, false, consumer);
     }
 }

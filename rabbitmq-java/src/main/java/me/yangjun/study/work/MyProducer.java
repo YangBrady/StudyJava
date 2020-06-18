@@ -2,7 +2,6 @@ package me.yangjun.study.work;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import me.yangjun.study.utils.ConnectionUtil;
 
 /**
  * @author mooejun
