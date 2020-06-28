@@ -24,8 +24,7 @@ public class MyProducer {
 		Channel channel = conn.createChannel();
 
 		// 声明交换机（已经存在的话就不会再创建）
-		channel.exchangeDeclare(EXCHANGE_NAME, EXCHANGE_TYPE,
-				false, false, null);
+		channel.exchangeDeclare(EXCHANGE_NAME, EXCHANGE_TYPE, false, false, null);
 
 		// 发送消息
 		String msg = "Hello world!, 你好，Rabbit MQ";

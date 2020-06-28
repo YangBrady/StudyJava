@@ -17,6 +17,7 @@
         <module>xml-dom</module>
         <module>spring-mvc</module>
         <module>rabbitmq-java</module>
+        <module>rabbitmq-spring</module>
     </modules>
     <packaging>pom</packaging>
 
