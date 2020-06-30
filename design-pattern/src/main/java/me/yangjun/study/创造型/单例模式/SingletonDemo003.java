@@ -1,4 +1,4 @@
-package me.yangjun.study.单例模式;
+package me.yangjun.study.创造型.单例模式;
 
 /**
  * 饿汉式

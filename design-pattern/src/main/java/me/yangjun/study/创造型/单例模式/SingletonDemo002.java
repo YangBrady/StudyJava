@@ -1,4 +1,4 @@
-package me.yangjun.study.单例模式;
+package me.yangjun.study.创造型.单例模式;
 
 /**
  * 懒汉式，线程安全，效率低
