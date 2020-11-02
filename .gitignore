@@ -1,3 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Java template
 # Compiled class file
 *.class
 
@@ -22,15 +24,6 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-/target/
-/bin/
-/.project
-.idea/
-StudyJava.iml
-
-\.classpath
-
-\.settings/
-.vscode/
-/rabbitmq-java/target/
-/java-se/target/classes/
+# 自定义
+/.idea/
+*.iml
