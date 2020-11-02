@@ -5,20 +5,7 @@
     <groupId>me.yangjun.study</groupId>
     <artifactId>StudyJava</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>java-se</module>
-        <module>java-ee</module>
-        <module>design-pattern</module>
-        <module>algorithm</module>
-        <module>security</module>
-        <module>spring</module>
-        <module>xml-dom4j</module>
-        <module>xml-jaxb</module>
-        <module>xml-dom</module>
-        <module>spring-mvc</module>
-        <module>rabbitmq-java</module>
-        <module>rabbitmq-spring</module>
-    </modules>
+
     <packaging>pom</packaging>
 
     <properties>
@@ -32,7 +19,6 @@
 
     <build>
         <finalName>StudyJava</finalName>
-        <plugins>
-        </plugins>
+        <plugins/>
     </build>
 </project>
