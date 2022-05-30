@@ -1,5 +1,7 @@
 package me.yangjun.study.多线程.executor框架;
 
+import lombok.Data;
+import lombok.NonNull;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,9 +20,9 @@ public class ExecutorServiceDemo {
 	// ExecutorService executorService = Executors.newScheduledThreadPool(5);
 
 	@Test
-	public void exeRunable() {
+	public void exeRunnable() {
 		for (int i = 1; i <= 5; i++) {
-			executorService.execute(new TestRunable());
+			executorService.execute(new TestRunnable());
 			System.out.println("********** call times:" + i + "**********");
 		}
 		executorService.shutdown();
@@ -29,7 +31,7 @@ public class ExecutorServiceDemo {
 	@Test
 	public void exeCallable() {
 		for (int i = 1; i <= 5; i++) {
-			executorService.execute(new TestRunable());
+			executorService.execute(new TestRunnable());
 			System.out.println("********** call times:" + i + "**********");
 		}
 		executorService.shutdown();
@@ -70,15 +72,14 @@ public class ExecutorServiceDemo {
 	public void testCompletionService() throws InterruptedException, ExecutionException {
 		CompletionService<String> service = new ExecutorCompletionService<>(executorService);
 
-		List<TestCallable> tasks = new ArrayList<>();
 		for (int i = 1; i <= 5; i++) {
 			service.submit(new TestCallable("第" + i + "个线程"));
 		}
 
 		for (int i = 1; i <= 5; i++) {
-            System.out.println(System.currentTimeMillis() + "获取结果");
-            Future<String> future = service.take();
-            System.out.println(System.currentTimeMillis() + "获取结果:" + future.get());
+			System.out.println(System.currentTimeMillis() + "获取结果");
+			Future<String> future = service.take();
+			System.out.println(System.currentTimeMillis() + "获取结果:" + future.get());
 		}
 
 		System.out.println(System.currentTimeMillis() + "关闭线程池");
@@ -87,35 +88,22 @@ public class ExecutorServiceDemo {
 
 }
 
-class TestRunable implements Runnable {
+class TestRunnable implements Runnable {
 	@Override
 	public void run() {
 		System.out.println(Thread.currentThread().getName() + "执行被调用了");
 	}
 }
 
+@Data
 class TestCallable implements Callable<String> {
-
+	@NonNull
 	private String name;
-
-	public TestCallable() {
-	}
-
-	public TestCallable(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	@Override
 	public String call() throws Exception {
-		Thread.sleep(3 * 1000);
+		TimeUnit.SECONDS.sleep(1);
+		System.out.println("over");
 		return System.currentTimeMillis() + name;
 	}
 }
