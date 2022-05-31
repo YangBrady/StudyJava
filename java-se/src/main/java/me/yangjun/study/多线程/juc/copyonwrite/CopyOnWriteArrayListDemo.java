@@ -14,9 +14,8 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 public class CopyOnWriteArrayListDemo {
-
 	// private static final List<String> list = new ArrayList<>();
-	private static CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+	private static final CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
 
 	public static void main(String[] args) throws InterruptedException {
 		list.add("1");
@@ -28,16 +27,12 @@ public class CopyOnWriteArrayListDemo {
 
 		// 并发读取数据
 		for (int i = 0; i < 10; i++) {
-			service.execute(() -> {
-				list.forEach(log::debug);
-			});
+			service.execute(() -> list.forEach(log::debug));
 		}
 
 		// 并发写入数据
 		for (int i = 0; i < 10; i++) {
-			service.execute(() -> {
-				list.add("121");// 添加数据
-			});
+			service.execute(() -> list.add("121"));
 		}
 
 		log.debug(Arrays.toString(list.toArray()));
@@ -45,5 +40,6 @@ public class CopyOnWriteArrayListDemo {
 		log.debug(Arrays.toString(list.toArray()));
 
 		service.shutdown();
+		log.debug("over");
 	}
 }
