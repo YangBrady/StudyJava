@@ -16,15 +16,16 @@ import java.util.concurrent.*;
 @Slf4j
 public class ExecutorServiceDemo {
 
-	ExecutorService executorService = Executors.newFixedThreadPool(2);
+	ExecutorService executorService = Executors.newFixedThreadPool(3);
 	// ExecutorService executorService = Executors.newCachedThreadPool();
 	// ExecutorService executorService = Executors.newSingleThreadExecutor();
 	// ExecutorService executorService = Executors.newScheduledThreadPool(5);
 
 	@Test
-	public void exeRunnable() {
+	public void exeRunnable() throws InterruptedException {
 		for (int i = 1; i <= 5; i++) {
-			executorService.execute(new TestRunnable());
+			executorService.execute(new TestRunnable(i+"线程"));
+			// TimeUnit.MILLISECONDS.sleep(500);
 			log.debug("********** call times:" + i + "**********");
 		}
 		executorService.shutdown();
@@ -33,10 +34,24 @@ public class ExecutorServiceDemo {
 	@Test
 	public void exeCallable() {
 		for (int i = 1; i <= 5; i++) {
-			executorService.execute(new TestRunnable());
+			executorService.execute(new TestRunnable(i+"线程"));
 			log.debug("********** call times:" + i + "**********");
 		}
 		executorService.shutdown();
+	}
+
+	/**
+	 * 主线程不结束的话线程池会继续跑完，主线程结束线程池也没了
+	 * @throws InterruptedException
+	 */
+	@Test
+	public void testShutdown() throws InterruptedException {
+		for (int i = 1; i <= 3; i++) {
+			executorService.execute(new TestRunnable(i+"线程"));
+			log.debug("********** call times:" + i + "**********");
+		}
+		executorService.shutdown();
+		TimeUnit.SECONDS.sleep(3);
 	}
 
 	@Test
@@ -101,16 +116,20 @@ public class ExecutorServiceDemo {
 }
 
 @Slf4j
+@Data
 class TestRunnable implements Runnable {
+	@NonNull
+	private String name;
+
 	@Override
 	public void run() {
-		log.debug(Thread.currentThread().getName() + "执行开始");
+		log.debug("执行开始");
 		try {
 			TimeUnit.SECONDS.sleep(2);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		log.debug(Thread.currentThread().getName() + "执行结束");
+		log.debug("执行结束");
 	}
 }
 
@@ -122,9 +141,9 @@ class TestCallable implements Callable<String> {
 
 	@Override
 	public String call() throws Exception {
-		log.debug("deal");
+		log.debug("执行开始");
 		TimeUnit.SECONDS.sleep(2);
-		log.debug("over");
+		log.debug("执行结束");
 		return System.currentTimeMillis() + name;
 	}
 }
