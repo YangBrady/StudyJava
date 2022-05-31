@@ -2,6 +2,7 @@ package me.yangjun.study.多线程.executor框架;
 
 import lombok.Data;
 import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.concurrent.*;
  * @author mooejun
  * @since 2019/08/09
  */
+@Slf4j
 public class ExecutorServiceDemo {
 
 	ExecutorService executorService = Executors.newFixedThreadPool(2);
@@ -23,7 +25,7 @@ public class ExecutorServiceDemo {
 	public void exeRunnable() {
 		for (int i = 1; i <= 5; i++) {
 			executorService.execute(new TestRunnable());
-			System.out.println("********** call times:" + i + "**********");
+			log.debug("********** call times:" + i + "**********");
 		}
 		executorService.shutdown();
 	}
@@ -32,7 +34,7 @@ public class ExecutorServiceDemo {
 	public void exeCallable() {
 		for (int i = 1; i <= 5; i++) {
 			executorService.execute(new TestRunnable());
-			System.out.println("********** call times:" + i + "**********");
+			log.debug("********** call times:" + i + "**********");
 		}
 		executorService.shutdown();
 	}
@@ -44,13 +46,18 @@ public class ExecutorServiceDemo {
 			tasks.add(new TestCallable("第" + i + "个线程"));
 		}
 
-		System.out.println(System.currentTimeMillis() + "开启线程池");
+		log.debug(System.currentTimeMillis() + "开启线程池");
 		String future = executorService.invokeAny(tasks);
-		System.out.println(System.currentTimeMillis() + "future结果: " + future);
+		log.debug(System.currentTimeMillis() + "future结果: " + future);
 
 		executorService.shutdown();
 	}
 
+	/**
+	 * invokeAll方法，先用容器把所有线程装起来，然后一起执行
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	@Test
 	public void testInvokeAll() throws InterruptedException, ExecutionException {
 		List<TestCallable> tasks = new ArrayList<>();
@@ -58,16 +65,21 @@ public class ExecutorServiceDemo {
 			tasks.add(new TestCallable("第" + i + "个线程"));
 		}
 
-		System.out.println(System.currentTimeMillis() + "开启线程池");
+		log.debug(System.currentTimeMillis() + "开启线程池");
 		List<Future<String>> futures = executorService.invokeAll(tasks);
 		for (Future<String> future : futures) {
-			System.out.println("future结果: " + future.get());
+			log.debug("future结果: " + future.get());
 		}
 
-		System.out.println(System.currentTimeMillis() + "关闭线程池");
+		log.debug(System.currentTimeMillis() + "关闭线程池");
 		executorService.shutdown();
 	}
 
+	/**
+	 * CompletionService 提交多个任务 获取的时候获取最先执行完的结果
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 	@Test
 	public void testCompletionService() throws InterruptedException, ExecutionException {
 		CompletionService<String> service = new ExecutorCompletionService<>(executorService);
@@ -77,24 +89,32 @@ public class ExecutorServiceDemo {
 		}
 
 		for (int i = 1; i <= 5; i++) {
-			System.out.println(System.currentTimeMillis() + "获取结果");
+			log.debug(System.currentTimeMillis() + "获取结果");
 			Future<String> future = service.take();
-			System.out.println(System.currentTimeMillis() + "获取结果:" + future.get());
+			log.debug(System.currentTimeMillis() + "获取结果:" + future.get());
 		}
 
-		System.out.println(System.currentTimeMillis() + "关闭线程池");
+		log.debug(System.currentTimeMillis() + "关闭线程池");
 		executorService.shutdown();
 	}
 
 }
 
+@Slf4j
 class TestRunnable implements Runnable {
 	@Override
 	public void run() {
-		System.out.println(Thread.currentThread().getName() + "执行被调用了");
+		log.debug(Thread.currentThread().getName() + "执行开始");
+		try {
+			TimeUnit.SECONDS.sleep(2);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		log.debug(Thread.currentThread().getName() + "执行结束");
 	}
 }
 
+@Slf4j
 @Data
 class TestCallable implements Callable<String> {
 	@NonNull
@@ -102,8 +122,9 @@ class TestCallable implements Callable<String> {
 
 	@Override
 	public String call() throws Exception {
-		TimeUnit.SECONDS.sleep(1);
-		System.out.println("over");
+		log.debug("deal");
+		TimeUnit.SECONDS.sleep(2);
+		log.debug("over");
 		return System.currentTimeMillis() + name;
 	}
 }
