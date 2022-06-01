@@ -1,4 +1,4 @@
-package me.yangjun.study.多线程.CountDownLatch;
+package me.yangjun.study.多线程.同步器;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,7 +23,7 @@ public class CountDownLatchDemo {
 		Thread countUserThread = new Thread(() -> {
 			try {
 				log.info("正在统计新增用户数量");
-				TimeUnit.SECONDS.sleep(3); // 任务执行需要3秒
+				TimeUnit.SECONDS.sleep(4); // 任务执行需要3秒
 				map.put("userNumber", 1); // 保存结果值
 				countDownLatch.countDown(); // 标记已经完成一个任务
 				log.info("统计新增用户数量完毕");
@@ -34,9 +34,9 @@ public class CountDownLatchDemo {
 		Thread countOrderThread = new Thread(() -> {
 			try {
 				log.info("正在统计订单数量");
-				TimeUnit.SECONDS.sleep(5); // 任务执行需要3秒
-				map.put("countOrder", 2); // 保存结果值
-				countDownLatch.countDown(); // 标记已经完成一个任务
+				TimeUnit.SECONDS.sleep(2);
+				map.put("countOrder", 2);
+				countDownLatch.countDown();
 				log.info("统计订单数量完毕");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -45,9 +45,9 @@ public class CountDownLatchDemo {
 		Thread countGoodsThread = new Thread(() -> {
 			try {
 				log.info("正在商品销量");
-				TimeUnit.SECONDS.sleep(7); // 任务执行需要3秒
-				map.put("countGoods", 3); // 保存结果值
-				countDownLatch.countDown(); // 标记已经完成一个任务
+				TimeUnit.SECONDS.sleep(3);
+				map.put("countGoods", 3);
+				countDownLatch.countDown();
 				log.info("统计商品销量完毕");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -56,9 +56,9 @@ public class CountDownLatchDemo {
 		Thread countMoneyThread = new Thread(() -> {
 			try {
 				log.info("正在总销售额");
-				TimeUnit.SECONDS.sleep(9); // 任务执行需要3秒
-				map.put("countMoney", 4); // 保存结果值
-				countDownLatch.countDown(); // 标记已经完成一个任务
+				TimeUnit.SECONDS.sleep(5);
+				map.put("countMoney", 4);
+				countDownLatch.countDown();
 				log.info("统计销售额完毕");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
