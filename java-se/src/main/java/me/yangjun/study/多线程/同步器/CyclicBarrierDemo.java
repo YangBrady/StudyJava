@@ -13,8 +13,8 @@ import java.util.concurrent.Executors;
  */
 @Slf4j
 public class CyclicBarrierDemo {
-    // 创建 CyclicBarrier 实例，计数器的值设置为2
-    private static final CyclicBarrier cyclicBarrier = new CyclicBarrier(2, () -> log.info("全部运行结束"));
+    // 创建 CyclicBarrier 实例，计数器的值设置为2，同时传入一个barrierAction
+    private static final CyclicBarrier cyclicBarrier = new CyclicBarrier(2, () -> log.info("全都过屏障了"));
 
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
@@ -23,15 +23,15 @@ public class CyclicBarrierDemo {
         // 将线程提交到线程池
         executorService.submit(() -> {
             try {
-                log.info(Thread.currentThread() + "第一回合");
                 Thread.sleep(1000);
+                log.info(Thread.currentThread() + "到达第1层屏障");
                 cyclicBarrier.await();
 
-                log.info(Thread.currentThread() + "第二回合");
                 Thread.sleep(2000);
+                log.info(Thread.currentThread() + "到达第2层屏障");
                 cyclicBarrier.await();
 
-                log.info(Thread.currentThread() + "第三回合");
+                log.info(Thread.currentThread() + "终点");
             } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
@@ -39,15 +39,15 @@ public class CyclicBarrierDemo {
 
         executorService.submit(() -> {
             try {
-                log.info(Thread.currentThread() + "第一回合");
                 Thread.sleep(2000);
+                log.info(Thread.currentThread() + "到达第1层屏障");
                 cyclicBarrier.await();
 
-                log.info(Thread.currentThread() + "第二回合");
                 Thread.sleep(1000);
+                log.info(Thread.currentThread() + "到达第2层屏障");
                 cyclicBarrier.await();
 
-                log.info(Thread.currentThread() + "第三回合");
+                log.info(Thread.currentThread() + "终点");
             } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }

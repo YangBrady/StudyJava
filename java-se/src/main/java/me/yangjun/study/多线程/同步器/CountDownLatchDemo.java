@@ -73,7 +73,8 @@ public class CountDownLatchDemo {
 
 		try {
 			// 主线程等待所有统计指标执行完毕
-			countDownLatch.await();  // 阻塞当前线程，将当前线程加入阻塞队列。
+			countDownLatch.await(); // 阻塞当前线程，将当前线程加入阻塞队列。
+			// countDownLatch.await(2, TimeUnit.SECONDS); // 设置超时时间，时间过了主线程不再阻塞
 			long endTime = System.currentTimeMillis(); // 记录结束时间
 			log.info("------统计指标全部完成--------");
 			log.info("统计结果为：" + map.toString());
