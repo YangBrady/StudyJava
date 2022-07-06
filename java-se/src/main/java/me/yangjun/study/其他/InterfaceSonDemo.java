@@ -4,9 +4,8 @@ public class InterfaceSonDemo implements InterfaceDemo {
 
 	@Override
 	public void show() {
-		// name = "iio";
-		// System.out.println(name);
-
+		String name = "iio";
+		System.out.println(name);
 	}
 
 }
