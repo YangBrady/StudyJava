@@ -11,6 +11,7 @@
         <module>java-se</module>
         <module>java-problem</module>
         <module>java-mytools</module>
+        <module>java-other</module>
     </modules>
 
     <build>
