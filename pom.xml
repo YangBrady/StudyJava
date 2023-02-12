@@ -12,6 +12,7 @@
         <module>java-problem</module>
         <module>java-mytools</module>
         <module>java-other</module>
+        <module>common</module>
     </modules>
 
     <build>
