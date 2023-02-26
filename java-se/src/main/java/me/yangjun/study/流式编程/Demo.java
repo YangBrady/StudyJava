@@ -1,14 +1,10 @@
 package me.yangjun.study.流式编程;
 
 import lombok.extern.slf4j.Slf4j;
+import me.yangjun.study.common.po.UserPO;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -66,5 +62,36 @@ public class Demo {
                 .count();
 
         log.debug(numberOf65PlusCustomers + "");
+    }
+
+    @Test
+    public void testGroup() {
+        List<UserPO> userPOList = UserPO.genUserPOList(30);
+        Map<Integer, List<UserPO>> collect = userPOList.stream().collect(Collectors.groupingBy(UserPO::getAge));
+        log.info("map={}", collect);
+    }
+
+    @Test
+    public void testGroupCount() {
+        List<UserPO> userPOList = UserPO.genUserPOList(30);
+        Map<String, Long> collect = userPOList.stream().collect(Collectors.groupingBy(UserPO::getSex,
+                Collectors.counting()));
+        log.info("map={}", collect);
+    }
+
+    @Test
+    public void testGroupMax() {
+        List<UserPO> userPOList = UserPO.genUserPOList(30);
+        Map<String, Optional<UserPO>> collect = userPOList.stream().collect(Collectors.groupingBy(UserPO::getSex,
+                Collectors.maxBy(Comparator.comparing(UserPO::getAge))));
+        log.info("map={}", collect);
+    }
+
+    @Test
+    public void testGroupSum() {
+        List<UserPO> userPOList = UserPO.genUserPOList(10);
+        Map<String, Integer> collect = userPOList.stream().collect(Collectors.groupingBy(UserPO::getSex,
+                Collectors.summingInt(UserPO::getAge)));
+        log.info("map={}", collect);
     }
 }
