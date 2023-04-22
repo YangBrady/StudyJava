@@ -8,11 +8,14 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
+        <module>common</module>
+
         <module>java-se</module>
         <module>java-problem</module>
         <module>java-mytools</module>
         <module>java-other</module>
-        <module>common</module>
+
+        <module>spring-test</module>
     </modules>
 
     <build>
