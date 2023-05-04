@@ -22,7 +22,8 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
-            <scope>provided</scope>
+            <!-- provider会导致引用common的module无法使用lombok -->
+            <!--<scope>provided</scope>-->
         </dependency>
 
         <dependency>
