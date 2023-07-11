@@ -12,5 +12,5 @@ mybatis:
 
 logging:
   level:
-    root: info
+    root: debug
 #    com.example.mybatis.mapper: debug

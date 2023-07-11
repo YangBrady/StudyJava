@@ -49,14 +49,14 @@ public class ExecutorServiceDemo {
     public void testShutdown() throws InterruptedException {
         for (int i = 1; i <= 3; i++) {
             executorService.execute(new TestRunnable(i + "线程"));
-            log.debug("********** call times:" + i + "**********");
         }
-        executorService.shutdown();
-        // TimeUnit.SECONDS.sleep(3);
+        // executorService.shutdown();
+        TimeUnit.SECONDS.sleep(3);
     }
 
     /**
      * 同时提交多个任务，并返回一个已经完成的结果，但是具体是哪一个任务返回的不确定，有一个线程完成了就返回
+     *
      * @throws InterruptedException
      * @throws ExecutionException
      */
@@ -131,13 +131,13 @@ class TestRunnable implements Runnable {
 
     @Override
     public void run() {
-        log.debug("执行开始");
+        log.debug("线程:{} start", name);
         try {
             TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            log.debug("线程:{} error", name, e);
         }
-        log.debug("执行结束");
+        log.debug("线程:{} end", name);
     }
 }
 
