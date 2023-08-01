@@ -1,5 +1,6 @@
 package me.yangjun.study.集合类.collection.list;
 
+import me.yangjun.study.集合类.collection.CollectionErgodicProblem;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class ArrayListDemo {
 	
 	/**
 	 * <p>遍历数据 -- Iterator</p>
-	 * @see ArrayListProblem
+	 * @see CollectionErgodicProblem
 	 */
 	@Test
 	public void dealErgodic() {

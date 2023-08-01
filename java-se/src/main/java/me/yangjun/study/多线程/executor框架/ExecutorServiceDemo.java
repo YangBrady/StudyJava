@@ -50,7 +50,7 @@ public class ExecutorServiceDemo {
         for (int i = 1; i <= 3; i++) {
             executorService.execute(new TestRunnable(i + "线程"));
         }
-        // executorService.shutdown();
+        executorService.shutdown();
         TimeUnit.SECONDS.sleep(3);
     }
 
