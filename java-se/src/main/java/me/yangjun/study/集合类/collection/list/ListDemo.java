@@ -7,12 +7,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ListTest {
+public class ListDemo {
     public static void main(String[] args) {
         // List接口特有方法：get(),返回列表中指定元素
         // Arrays.asList()和Collection.toArray()是作为数组和集合类的一个桥
 
-        ListTest a = new ListTest();
+        ListDemo a = new ListDemo();
         a.testChange();
     }
 
