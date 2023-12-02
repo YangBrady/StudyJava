@@ -1,4 +1,6 @@
 spring:
+  main:
+    allow-circular-references: true
   profile: dev
   datasource:
     # type: com.alibaba.druid.pool.DruidDataSource
@@ -12,5 +14,8 @@ mybatis:
 
 logging:
   level:
-    root: debug
+    root: info
 #    com.example.mybatis.mapper: debug
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

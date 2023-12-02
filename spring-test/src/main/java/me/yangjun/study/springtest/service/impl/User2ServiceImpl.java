@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import me.yangjun.study.springtest.domain.UserVO;
 import me.yangjun.study.springtest.mapper.UserMapper;
-import me.yangjun.study.springtest.service.UserService;
+import me.yangjun.study.springtest.service.User2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @Slf4j
-public class UserServiceImpl extends ServiceImpl<UserMapper, UserVO> implements UserService {
+public class User2ServiceImpl extends ServiceImpl<UserMapper, UserVO> implements User2Service {
     @Autowired
     private UserMapper userMapper;
 

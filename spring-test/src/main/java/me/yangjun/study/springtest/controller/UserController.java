@@ -1,8 +1,8 @@
 package me.yangjun.study.springtest.controller;
 
 import lombok.RequiredArgsConstructor;
-import me.yangjun.study.springtest.domain.UserVo;
-import me.yangjun.study.springtest.service.IUserService;
+import me.yangjun.study.springtest.domain.UserVO;
+import me.yangjun.study.springtest.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -17,16 +17,16 @@ import java.util.Map;
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
-    private final IUserService userService;
+    private final UserService userService;
 
     @GetMapping("/{id}")
-    public UserVo getById(@PathVariable("id") Long id) {
+    public UserVO getById(@PathVariable("id") Long id) {
         return userService.getById(id);
     }
 
     @GetMapping("/")
-    public UserVo findByAge(@RequestParam("age") Integer age) {
-        Map<Integer, UserVo> UserMapByAge = userService.findUserMapByAge();
+    public UserVO findByAge(@RequestParam("age") Integer age) {
+        Map<Integer, UserVO> UserMapByAge = userService.findUserMapByAge();
         return UserMapByAge.get(age);
     }
 }

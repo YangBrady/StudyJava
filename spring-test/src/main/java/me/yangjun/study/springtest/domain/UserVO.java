@@ -14,7 +14,7 @@ import java.io.Serializable;
 @TableName(value = "user")
 @Data
 @FieldNameConstants
-public class UserVo implements Serializable {
+public class UserVO implements Serializable {
     /**
      * 主键ID
      */
