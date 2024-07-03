@@ -15,6 +15,7 @@
         <module>java-other</module>
 
         <module>design-pattern</module>
+        <module>algo</module>
 
         <module>spring-test</module>
     </modules>
