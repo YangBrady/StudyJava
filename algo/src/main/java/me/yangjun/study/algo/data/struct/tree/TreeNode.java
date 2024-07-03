@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class TreeNode {
-    private String val;
-    private TreeNode left;
-    private TreeNode right;
+    protected String val;
+    protected TreeNode left;
+    protected TreeNode right;
 
     public TreeNode(String val) {
         this.val = val;
