@@ -1,6 +1,6 @@
 package me.yangjun.study.泛型.泛型类;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mooejun

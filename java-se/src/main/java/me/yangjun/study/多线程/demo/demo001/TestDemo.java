@@ -1,6 +1,6 @@
 package me.yangjun.study.多线程.demo.demo001;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TestDemo {
 

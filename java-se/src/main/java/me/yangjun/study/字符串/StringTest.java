@@ -1,6 +1,6 @@
 package me.yangjun.study.字符串;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author mooejun

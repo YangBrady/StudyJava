@@ -1,7 +1,7 @@
 package me.yangjun.study.集合类.collection.list;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;

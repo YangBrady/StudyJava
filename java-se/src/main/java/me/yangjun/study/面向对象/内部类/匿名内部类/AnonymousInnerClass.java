@@ -1,6 +1,6 @@
 package me.yangjun.study.面向对象.内部类.匿名内部类;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * JDK1.8以前，匿名内部类调用的局部变量必须是final修饰的。

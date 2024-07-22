@@ -1,6 +1,6 @@
 package me.yangjun.study.集合类.泛型;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 泛型

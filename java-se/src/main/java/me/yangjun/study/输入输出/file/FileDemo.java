@@ -1,6 +1,6 @@
 package me.yangjun.study.输入输出.file;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;

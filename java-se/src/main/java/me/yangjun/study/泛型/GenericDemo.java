@@ -1,7 +1,7 @@
 package me.yangjun.study.泛型;
 
 import me.yangjun.study.泛型.泛型类.GenericClass01;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;

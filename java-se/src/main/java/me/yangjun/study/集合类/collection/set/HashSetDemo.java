@@ -1,6 +1,6 @@
 package me.yangjun.study.集合类.collection.set;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Iterator;

@@ -1,14 +1,14 @@
 package me.yangjun.study.其他;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class MathDemo {
 
-	@Test
-	public void testRound() {
-		System.out.println(Math.round(-11.2));// -11
-		System.out.println(Math.round(-11.5));// -11
-		System.out.println(Math.round(-11.7));// -12
-	}
+    @Test
+    public void testRound() {
+        System.out.println(Math.round(-11.2));// -11
+        System.out.println(Math.round(-11.5));// -11
+        System.out.println(Math.round(-11.7));// -12
+    }
 
 }

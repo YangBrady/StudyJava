@@ -1,7 +1,7 @@
 package me.yangjun.study.多线程;
 
 import me.yangjun.study.多线程.创建.MyThread;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class CreateThreadDemo {
 

@@ -1,6 +1,6 @@
 package me.yangjun.study.时间.problem.p001;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.text.ParseException;
 import java.util.ArrayList;

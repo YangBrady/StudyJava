@@ -1,6 +1,6 @@
 package me.yangjun.study.面向对象.内部类.成员内部类;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * 创建内部类对象

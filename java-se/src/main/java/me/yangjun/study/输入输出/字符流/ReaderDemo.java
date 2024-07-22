@@ -1,6 +1,6 @@
 package me.yangjun.study.输入输出.字符流;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileReader;
 import java.io.IOException;
