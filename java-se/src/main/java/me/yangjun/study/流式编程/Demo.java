@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
 import me.yangjun.study.common.po.UserPO;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -88,6 +87,9 @@ public class Demo {
         log.info("map={}", collect);
     }
 
+    /**
+     * Collectors.toMap的 value对比时候，如果存值null会抛NPE
+     */
     @Test
     public void toMapNPE() {
         UserPO userPO1 = new UserPO();
