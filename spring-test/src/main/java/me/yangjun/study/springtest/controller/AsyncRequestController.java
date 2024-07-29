@@ -12,8 +12,8 @@ import java.util.concurrent.TimeUnit;
 /**
  * <p>描述：测试异步请求参数问题</p>
  * <p>参考博客：
- * <a href="https://www.cnblogs.com/thisiswhy/p/16539739.html">关于Request复用的那点破事儿。研究明白了，给你汇报一下。 </a>
  * <a href="https://www.cnblogs.com/mysgk/p/16470336.html">springboot 中如何正确的在异步线程中使用request </a>
+ * <a href="https://www.cnblogs.com/thisiswhy/p/16539739.html">关于Request复用的那点破事儿。研究明白了，给你汇报一下。 </a>
  * </p>
  *
  * @author: Brady Yang
@@ -25,36 +25,32 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/asyncRequest")
 public class AsyncRequestController {
 
+    private static void getParamAndPrint(HttpServletRequest request) {
+        String age = request.getParameter("age");
+        String name = request.getParameter("name");
+        log.info("age={}, name={}", age, name);
+    }
+
     @GetMapping("/test")
     public String test(HttpServletRequest request) {
-        String age1 = request.getParameter("age");
-        String name1 = request.getParameter("name");
-        log.info("arg1={}, name1={}", age1, name1);
+        getParamAndPrint(request);
         new Thread(() -> {
-            String age2 = request.getParameter("age");
-            String name2 = request.getParameter("name");
-            log.info("age2={}, name2={}", age2, name2);
+            getParamAndPrint(request);
         }).start();
         return "get success";
     }
 
     @GetMapping("/testWithSleep")
     public String testWithSleep(HttpServletRequest request) {
-        String age1 = request.getParameter("age");
-        String name1 = request.getParameter("name");
-        log.info("arg1={}, name1={}", age1, name1);
+        getParamAndPrint(request);
         new Thread(() -> {
-            String age2 = request.getParameter("age");
-            String name2 = request.getParameter("name");
-            log.info("age2={}, name2={}", age2, name2);
+            getParamAndPrint(request);
             try {
                 TimeUnit.SECONDS.sleep(2);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            age2 = request.getParameter("age");
-            name2 = request.getParameter("name");
-            log.info("age2={}, name1={}", age2, name2);
+            getParamAndPrint(request);
         }).start();
         return "get success";
     }
