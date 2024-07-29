@@ -1,8 +1,8 @@
 package me.yangjun.study.algo.data.struct.queue;
 
 public class BradyArrayQueue {
-    private int maxSize;
-    private int[] array;
+    private final int maxSize;
+    private final int[] array;
 
     private int rear = -1;
     private int front = -1;
