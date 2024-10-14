@@ -57,6 +57,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
 <!--            <scope>test</scope>-->
         </dependency>
+
+        <!-- disruptor 环形队列 -->
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.4.4</version>
+        </dependency>
     </dependencies>
 
     <build>
