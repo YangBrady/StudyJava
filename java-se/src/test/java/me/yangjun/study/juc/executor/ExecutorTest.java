@@ -1,4 +1,4 @@
-package me.yangjun.study.executor;
+package me.yangjun.study.juc.executor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package me.yangjun.study.多线程.同步器;
+package me.yangjun.study.juc;
 
 import lombok.extern.slf4j.Slf4j;
 
