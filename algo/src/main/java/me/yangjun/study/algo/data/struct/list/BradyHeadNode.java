@@ -11,6 +11,9 @@ public class BradyHeadNode<T> {
         this.value = value;
     }
 
+    /**
+     * 反转
+     */
     public BradyHeadNode<T> reverse() {
         BradyHeadNode<T> indexNode = this.next;
         BradyHeadNode<T> restNode;
