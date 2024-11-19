@@ -1,8 +1,8 @@
-package me.yangjun.study.其他;
+package me.yangjun.study.other;
 
 import org.junit.jupiter.api.Test;
 
-public class MathDemo {
+public class MathTest {
 
     @Test
     public void testRound() {

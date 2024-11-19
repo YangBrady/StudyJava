@@ -1,17 +1,9 @@
 package me.yangjun.study.接口;
 
 public interface InterfaceA {
-	public void doA();
+    static void doC() {}
 
-	default void doB() { }
+    public void doA();
 
-	static void doC() { }
+    default void doB() {}
 }
-
-
-
-
-
-
-
-

@@ -1,6 +1,6 @@
-package me.yangjun.study.其他;
+package me.yangjun.study.other;
 
-public class InterfaceSonDemo implements InterfaceDemo {
+public class InterfaceSonTest implements InterfaceTest {
 
 	@Override
 	public void show() {
