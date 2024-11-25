@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import me.yangjun.study.springkafka.TopicConstants;
+import me.yangjun.study.springkafka.constant.TopicConstants;
 import me.yangjun.study.springkafka.producer.KafkaProducer;
 
 @RestController
