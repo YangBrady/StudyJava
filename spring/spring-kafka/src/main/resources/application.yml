@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      # 发生错误后的重试次数
+      retries: 3
+      # 批量发送的消息数量
+      batch-size: 16384
+      # 32MB的批处理缓冲区
+      buffer-memory: 33554432
+      # 指定消息key和消息体的编解码方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: 1
+    consumer:
+      # 默认的消费组ID
+      group-id: myGroup
+      # 是否自动提交offset
+      enable-auto-commit: true
+      # 自动提交的频率
+      auto-commit-interval: 100
+      # 当kafka中没有初始offset或offset超出范围时将自动重置offset
+      # earliest:重置为分区中最小的offset
+      # latest:重置为分区中最新的offset(消费分区中新产生的数据)
+      # none:只要有一个分区不存在已提交的offset,就抛出异常
+      auto-offset-reset: earliest
+      # 指定消息key和消息体的编解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
