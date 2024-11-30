@@ -23,6 +23,15 @@ public class Demo77 {
             return result;
         }
 
+        /**
+         * 回溯
+         *
+         * @param startIndex 开始节点
+         * @param n          树的宽度
+         * @param k          树的深度
+         * @param path       当前遍历的路径
+         * @param result     结果集
+         */
         private void backtracking(int startIndex, int n, int k, LinkedList<Integer> path, List<List<Integer>> result) {
             // 终止条件
             if (path.size() == k) {
@@ -35,7 +44,6 @@ public class Demo77 {
                 backtracking(i + 1, n, k, path, result);
                 path.removeLast();
             }
-
         }
     }
 }
