@@ -1,8 +1,13 @@
 package me.yangjun.study.algo.leecode.cn;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * <a href="https://leetcode.cn/problems/combinations/description/">LeeCode 77 </a>
@@ -10,12 +15,19 @@ import java.util.List;
  * 你可以按 任何顺序 返回答案。
  */
 public class Demo77 {
-    public static void main(String[] args) {
-        List<List<Integer>> result = new Solution().combine(4, 2);
-        System.out.println(result);
+    static Stream<Arguments> dataProvider() {
+        return Stream.of(
+                Arguments.of(4, 2)
+        );
     }
 
-    static class Solution {
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    public void test1(int n, int k) {
+        System.out.println(new Demo77.Solution().combine(n, k));
+    }
+
+    private static class Solution {
         public List<List<Integer>> combine(int n, int k) {
             LinkedList<Integer> path = new LinkedList<>();
             List<List<Integer>> result = new ArrayList<>();

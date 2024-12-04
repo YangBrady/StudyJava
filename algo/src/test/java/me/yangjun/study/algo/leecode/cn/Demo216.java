@@ -1,20 +1,32 @@
 package me.yangjun.study.algo.leecode.cn;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * <a href="https://leetcode.cn/problems/combination-sum-iii/description/">LeeCode 216 </a>
  */
 public class Demo216 {
-    public static void main(String[] args) {
-        // List<List<Integer>> result = new Solution().combinationSum3(3, 7);
-        List<List<Integer>> result = new Solution().combinationSum3(3, 9);
-        System.out.println(result);
+    static Stream<Arguments> dataProvider() {
+        return Stream.of(
+                Arguments.of(3, 7),
+                Arguments.of(3, 9)
+        );
     }
 
-    static class Solution {
+    @ParameterizedTest
+    @MethodSource("dataProvider")
+    public void test1(int k, int n) {
+        System.out.println(new Demo216.Solution().combinationSum3(k, n));
+    }
+
+    private static class Solution {
         public List<List<Integer>> combinationSum3(int k, int n) {
             LinkedList<Integer> path = new LinkedList<>();
             List<List<Integer>> result = new ArrayList<>();
