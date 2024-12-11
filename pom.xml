@@ -20,6 +20,7 @@
         <module>spring/spring-test</module>
         <module>spring/spring-rocketmq</module>
         <module>spring/spring-kafka</module>
+        <module>spring/spring2024001</module>
     </modules>
 
     <properties>
