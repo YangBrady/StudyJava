@@ -5,6 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>spring2024001</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <description>Spring API接口返回统一结构</description>
 
     <parent>
         <groupId>me.yangjun.study</groupId>
@@ -20,7 +21,7 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -28,7 +29,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
