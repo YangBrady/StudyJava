@@ -2,19 +2,29 @@ package me.yangjun.study.config.aop;
 
 import java.lang.reflect.Method;
 
+import me.yangjun.study.config.parser.spel.AutoLogValueParser;
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
+import me.yangjun.study.config.parser.func.ParseFunction;
+import me.yangjun.study.config.parser.func.impl.ParseFunctionFactory;
 
 @Aspect
 @Component
 @Slf4j
 public class LogRecordAspect {
+    @Autowired
+    private ParseFunctionFactory parseFunctionFactory;
+    @Autowired
+    private AutoLogValueParser autoLogValueParser;
+
     /**
      * 切点
      */
@@ -34,7 +44,14 @@ public class LogRecordAspect {
         // 执行
         Object ret = joinPoint.proceed();
 
-        // TODO 记录日志
+
+        // 解析日志
+        // autoLogValueParser.createEvaluationContext();
+        String function = StringUtils.isBlank(logRecord.success()) ? "hcmParseFunctionImpl" : logRecord.success();
+        ParseFunction parseFunction = parseFunctionFactory.getFunction(function);
+        String parseResult = parseFunction.apply(logRecord.detail());
+        // 记录日志
+        log.info("logRecord：{}", parseResult);
 
         return ret;
     }

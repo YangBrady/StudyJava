@@ -18,9 +18,11 @@
         <module>algo</module>
 
         <module>spring/spring-test</module>
+        <module>spring/spring-spel</module>
         <module>spring/spring-rocketmq</module>
         <module>spring/spring-kafka</module>
         <module>spring/spring2024001</module>
+        <module>spring/spring2025001</module>
     </modules>
 
     <properties>
@@ -35,7 +37,6 @@
     </properties>
 
     <dependencyManagement>
-        <!-- SpringBoot的依赖配置-->
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -70,6 +71,24 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-spring-boot-starter</artifactId>
                 <version>${rocketMQStarter.version}</version>
+            </dependency>
+
+            <!-- apache 工具包 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.12.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.4</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>32.0.0-jre</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

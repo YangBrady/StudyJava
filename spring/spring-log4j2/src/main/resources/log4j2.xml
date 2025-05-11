@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<configuration status="ON">
+<configuration status="WARN">
     <Properties>
         <!-- 增加%ex配置，因为如果没有显式配置%ex，则异常格式化输出的默认配置是%xEx，此时会打印异常的扩展信息（JAR名称和版本），可能导致业务线程Block -->
 <!--        <property name="console_log_pattern">%d{yyyy-MM-dd HH:mm:ss} [%level] [%t] %l %m%n %ex</property>-->
