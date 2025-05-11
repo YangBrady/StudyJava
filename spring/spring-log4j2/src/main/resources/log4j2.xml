@@ -12,7 +12,6 @@
 
     <appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="${console_log_pattern}"/>
         </Console>
 
@@ -22,9 +21,6 @@
             <Policies>
                 <SizeBasedTriggeringPolicy size="${every_file_size}"/>
             </Policies>
-            <Filters>
-                <ThresholdFilter level="DEBUG" onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
         </RollingFile>
     </appenders>
 
