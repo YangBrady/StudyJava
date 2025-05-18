@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration status="WARN">
+    <Properties>
+        <property name="console_log_pattern">%d{yyyy-MM-dd HH:mm:ss} [%level] [%t] %l %m%n %ex</property>
+    </Properties>
+
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${console_log_pattern}"/>
+        </Console>
+    </appenders>
+
+    <loggers>
+        <!-- 属性 level 是用于设置最低需要输出的日志输出级别 -->
+        <root level="DEBUG">
+            <appender-ref ref="Console"/>
+        </root>
+    </loggers>
+</configuration>

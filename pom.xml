@@ -23,6 +23,7 @@
         <module>spring/spring-kafka</module>
         <module>spring/spring2024001</module>
         <module>spring/spring2025001</module>
+        <module>spring/spring2025003</module>
         <module>frame-akka</module>
     </modules>
 
