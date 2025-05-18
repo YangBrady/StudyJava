@@ -28,15 +28,19 @@ public class CacheService {
     public String get(String key) {
         log.debug("先查本地缓存");
         String value = caffeineCache.getIfPresent(key);
-        if (value == null) {
-            log.debug("本地缓存没有，查Redis");
-            value = redisTemplate.opsForValue().get(REDIS_CACHE_PREFIX + key);
-            if (value != null) {
-                log.debug("重新填充本地缓存");
-                caffeineCache.put(key, value);
-            }
+        if (value != null) {
+            return value;
         }
-        return value;
+
+        log.debug("本地缓存没有，查Redis");
+        String redisValue = redisTemplate.opsForValue().get(REDIS_CACHE_PREFIX + key);
+        if (redisValue != null) {
+            log.debug("重新填充本地缓存");
+            caffeineCache.put(key, redisValue);
+            return redisValue;
+        }
+
+        return null;
     }
 
     // TODO 要考虑并发
