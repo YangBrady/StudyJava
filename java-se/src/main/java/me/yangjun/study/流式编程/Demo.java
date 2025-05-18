@@ -92,21 +92,11 @@ public class Demo {
      */
     @Test
     public void toMapNPE() {
-        UserPO userPO1 = new UserPO();
-        userPO1.setAge(1);
-        userPO1.setName("A");
-
-        UserPO userPO2 = new UserPO();
-        userPO2.setAge(2);
-
-        UserPO userPO3 = new UserPO();
-        userPO3.setAge(2);
-        userPO3.setName("C");
-
+        UserPO userPO1 = UserPO.builder().age(1).name("A").build();
+        UserPO userPO2 = UserPO.builder().age(2).build();
+        UserPO userPO3 = UserPO.builder().age(2).name("C").build();
         ArrayList<UserPO> userPOList = Lists.newArrayList(userPO1, userPO2, userPO3);
-
-        Assertions.assertThrows(NullPointerException.class, () -> {
+        Map<Integer, String> collect =
             userPOList.stream().collect(Collectors.toMap(UserPO::getAge, UserPO::getName, (o1, o2) -> o1));
-        });
     }
 }

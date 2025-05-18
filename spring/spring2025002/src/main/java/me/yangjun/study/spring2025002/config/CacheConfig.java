@@ -29,6 +29,7 @@ public class CacheConfig {
         return template;
     }
 
+    // TODO 嘘要根据不同业务逻辑拆分？
     @Bean
     public Cache<String, Object> caffeineCache() {
         return Caffeine.newBuilder()

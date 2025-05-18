@@ -23,6 +23,7 @@ public class CacheService {
     @Resource
     private Cache<String, String> caffeineCache;
 
+    // TODO 要考虑并发
     // 获取缓存值
     public String get(String key) {
         log.debug("先查本地缓存");
@@ -38,6 +39,7 @@ public class CacheService {
         return value;
     }
 
+    // TODO 要考虑并发
     // 设置缓存
     public void set(String key, String value, long timeout, TimeUnit unit) {
         log.debug("设置Redis缓存");
@@ -46,6 +48,7 @@ public class CacheService {
         caffeineCache.put(key, value);
     }
 
+    // TODO 要考虑并发
     // 清理缓存
     public void evict(String key) {
         log.debug("删除本地缓存");
@@ -56,6 +59,7 @@ public class CacheService {
         redisTemplate.convertAndSend(CACHE_CLEAR_CHANNEL, key);
     }
 
+    // TODO 要考虑并发
     // 订阅缓存清理消息
     public void subscribeCacheClearMessage(String key) {
         redisTemplate.getConnectionFactory().getConnection().subscribe((message, pattern) -> {
