@@ -2,6 +2,8 @@ package me.yangjun.study.流式编程;
 
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import me.yangjun.study.common.po.QQInfo;
+import me.yangjun.study.common.po.TxUserPO;
 import me.yangjun.study.common.po.UserPO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -98,5 +100,22 @@ public class Demo {
         ArrayList<UserPO> userPOList = Lists.newArrayList(userPO1, userPO2, userPO3);
         Map<Integer, String> collect =
             userPOList.stream().collect(Collectors.toMap(UserPO::getAge, UserPO::getName, (o1, o2) -> o1));
+    }
+
+    /**
+     * Collectors.toMap的 value对比时候，如果存值null会抛NPE
+     */
+    @Test
+    public void filterAnyNPE() {
+        TxUserPO userPO1 = TxUserPO.builder().age(1).qqInfo(new QQInfo(){{setQq("123");}}).build();
+        TxUserPO userPO2 = TxUserPO.builder().age(2).build();
+        TxUserPO userPO3 = TxUserPO.builder().age(2).build();
+        ArrayList<TxUserPO> userPOList = Lists.newArrayList(userPO1, userPO2, userPO3);
+        QQInfo qqInfo = userPOList.stream()
+                .filter(vo -> vo.getAge() > 1)
+                .map(TxUserPO::getQqInfo)
+                .findAny()
+                .orElse(new QQInfo());
+        System.out.println(qqInfo);
     }
 }
