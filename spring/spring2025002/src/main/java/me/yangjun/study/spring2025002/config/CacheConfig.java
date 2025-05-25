@@ -3,6 +3,7 @@ package me.yangjun.study.spring2025002.config;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import me.yangjun.study.spring2025002.constants.TopicConstants;
+import me.yangjun.study.spring2025002.service.sub.SubscriptService;
 import me.yangjun.study.spring2025002.service.sub.impl.SubscriptServiceAImpl;
 import me.yangjun.study.spring2025002.service.sub.impl.SubscriptServiceBImpl;
 import org.springframework.cache.annotation.EnableCaching;
@@ -19,6 +20,7 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
+import java.util.List;
 
 @Configuration
 @EnableCaching
@@ -55,25 +57,14 @@ public class CacheConfig {
     }
 
     @Bean
-    public RedisMessageListenerContainer container(LettuceConnectionFactory connectionFactory,
-                                                   // 这里可以指定多个MessageListenerAdapter，MessageListenerAdapter名字要与下面定义的bean的方法名字一致，否则会注入不进来
-                                                   MessageListenerAdapter listenerAdapter1,
-                                                   MessageListenerAdapter listenerAdapter2) {
+    public RedisMessageListenerContainer container(LettuceConnectionFactory connectionFactory, List<SubscriptService> subscriptServiceList) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        // 这里将channel的订阅者添加到container中，并指定要消费的channel
-        container.addMessageListener(listenerAdapter1, new PatternTopic(TopicConstants.TEST_TOPIC));
-        container.addMessageListener(listenerAdapter2, new PatternTopic(TopicConstants.TEST_TOPIC));
+        //
+        // for (SubscriptService subscriptService : subscriptServiceList) {
+        //     container.addMessageListener(new MessageListenerAdapter(subscriptService), new PatternTopic(subscriptService.getTopic()));
+        // }
+
         return container;
-    }
-
-    @Bean
-    public MessageListenerAdapter listenerAdapter1(SubscriptServiceAImpl sub) {
-        return new MessageListenerAdapter(sub, "subscript");
-    }
-
-    @Bean
-    public MessageListenerAdapter listenerAdapter2(SubscriptServiceBImpl sub) {
-        return new MessageListenerAdapter(sub, "subscript");
     }
 }
