@@ -1,7 +1,11 @@
 package me.yangjun.study.spring2025002.controller;
 
+import me.yangjun.study.spring2025002.constants.TopicConstants;
 import me.yangjun.study.spring2025002.service.CacheService;
+import me.yangjun.study.spring2025002.service.pub.PublishService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +21,8 @@ import java.util.concurrent.TimeUnit;
 public class UserController {
     @Autowired
     private CacheService cacheService;
+    @Autowired
+    private PublishService publishService;
 
     @GetMapping("/{userId}")
     public String getUser(@PathVariable String userId) {
@@ -31,5 +37,12 @@ public class UserController {
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable String userId) {
         cacheService.evict(userId);
+    }
+
+
+    @GetMapping("/demo/{userId}")
+    public String getUser2(@PathVariable String userId) {
+        publishService.publish(TopicConstants.TEST_TOPIC, userId);
+        return "";
     }
 }
