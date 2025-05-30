@@ -6,6 +6,7 @@ import me.yangjun.study.spring2025002.constants.TopicConstants;
 import me.yangjun.study.spring2025002.service.sub.SubscriptService;
 import me.yangjun.study.spring2025002.service.sub.impl.SubscriptServiceAImpl;
 import me.yangjun.study.spring2025002.service.sub.impl.SubscriptServiceBImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,12 +20,15 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import javax.annotation.PostConstruct;
 import java.time.Duration;
 import java.util.List;
 
 @Configuration
 @EnableCaching
 public class CacheConfig {
+    @Autowired
+    private RedisMessageListenerContainer container;
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
@@ -66,4 +70,6 @@ public class CacheConfig {
 
         return container;
     }
+
+
 }
