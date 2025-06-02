@@ -1,12 +1,8 @@
 package me.yangjun.study.spring2025002.config;
 
-import com.github.benmanes.caffeine.cache.Cache;
-import com.github.benmanes.caffeine.cache.Caffeine;
-import me.yangjun.study.spring2025002.constants.TopicConstants;
-import me.yangjun.study.spring2025002.service.sub.SubscriptService;
-import me.yangjun.study.spring2025002.service.sub.impl.SubscriptServiceAImpl;
-import me.yangjun.study.spring2025002.service.sub.impl.SubscriptServiceBImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.time.Duration;
+import java.util.List;
+
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,16 +16,14 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import javax.annotation.PostConstruct;
-import java.time.Duration;
-import java.util.List;
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
+
+import me.yangjun.study.spring2025002.service.sub.SubscriptService;
 
 @Configuration
 @EnableCaching
 public class CacheConfig {
-    @Autowired
-    private SubscriptServiceBImpl subscriptServiceB;
-
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
@@ -48,7 +42,7 @@ public class CacheConfig {
                 .initialCapacity(100)
                 .maximumSize(500)
                 .expireAfterWrite(Duration.ofMinutes(10))
-                .build();
+            .build();
     }
 
     /**
@@ -60,20 +54,18 @@ public class CacheConfig {
     }
 
     @Bean
-    public RedisMessageListenerContainer container(LettuceConnectionFactory connectionFactory, List<SubscriptService> subscriptServiceList) {
+    public RedisMessageListenerContainer container(LettuceConnectionFactory connectionFactory,
+        List<SubscriptService> subscriptServiceList) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
 
-        // 这样一个都塞不进去
         for (SubscriptService subscriptService : subscriptServiceList) {
-            container.addMessageListener(new MessageListenerAdapter(subscriptService, "subscript"), new PatternTopic(subscriptService.getTopic()));
+            MessageListenerAdapter listenerAdapter = new MessageListenerAdapter(subscriptService);
+            // 如果 MessageListenerAdapter 不是以 @Bean的方式 注册的，则需要手动调用这个方法
+            listenerAdapter.afterPropertiesSet();
+            container.addMessageListener(listenerAdapter, new PatternTopic(subscriptService.getTopic()));
         }
-
-        // 难道获取到的topic是空的？
-        container.addMessageListener(new MessageListenerAdapter(subscriptServiceB, "subscript"), new PatternTopic(subscriptServiceB.getTopic()));
-
         return container;
     }
-
 
 }

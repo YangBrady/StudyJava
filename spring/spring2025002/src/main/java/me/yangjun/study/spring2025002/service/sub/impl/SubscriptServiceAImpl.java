@@ -14,7 +14,7 @@ public class SubscriptServiceAImpl implements SubscriptService {
     }
 
     @Override
-    public void subscript(String message) {
+    public void handleMessage(String message) {
         log.info("SubscriptServiceAImpl 接收到消息：{}", message);
     }
 }

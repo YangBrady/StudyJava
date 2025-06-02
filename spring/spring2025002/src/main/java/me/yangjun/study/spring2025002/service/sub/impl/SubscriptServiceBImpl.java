@@ -20,7 +20,7 @@ public class SubscriptServiceBImpl implements SubscriptService {
     }
 
     @Override
-    public void subscript(String message) {
+    public void handleMessage(String message) {
         log.info("SubscriptServiceBImpl 接收到消息：{}", message);
     }
 }
