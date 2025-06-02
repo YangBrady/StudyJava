@@ -21,9 +21,16 @@
         <module>spring/spring-spel</module>
         <module>spring/spring-rocketmq</module>
         <module>spring/spring-kafka</module>
+<!--        Spring API接口返回统一结构-->
         <module>spring/spring2024001</module>
+<!--        SpringBoot 多线程事务处理-->
         <module>spring/spring2025001</module>
+<!--        SpringBoot 二级缓存-->
+        <module>spring/spring2025002</module>
+<!--        SpringBoot 测试-->
         <module>spring/spring2025003</module>
+<!--        SpringBoot redission加锁-->
+        <module>spring/spring2025004</module>
         <module>frame-akka</module>
     </modules>
 

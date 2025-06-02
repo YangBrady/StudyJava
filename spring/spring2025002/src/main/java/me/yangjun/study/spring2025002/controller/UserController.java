@@ -24,25 +24,25 @@ public class UserController {
     @Autowired
     private PublishService publishService;
 
-    @GetMapping("/{userId}")
+    @GetMapping("/getUser/{userId}")
     public String getUser(@PathVariable String userId) {
         return cacheService.get(userId);
     }
 
-    @PostMapping("/{userId}")
+    @PostMapping("/updateUser/{userId}")
     public void updateUser(@PathVariable String userId, @RequestBody String newName) {
         cacheService.set(userId, newName, 10, TimeUnit.SECONDS);
     }
 
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/deleteUser/{userId}")
     public void deleteUser(@PathVariable String userId) {
         cacheService.evict(userId);
     }
 
 
-    @GetMapping("/demo/{userId}")
-    public String getUser2(@PathVariable String userId) {
-        publishService.publish(TopicConstants.TEST_TOPIC, userId);
-        return "";
+    @GetMapping("/demo")
+    public String getUser2() {
+        publishService.publish(TopicConstants.TEST_TOPIC, "123");
+        return "qq";
     }
 }

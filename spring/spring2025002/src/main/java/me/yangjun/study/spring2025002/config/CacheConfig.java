@@ -28,7 +28,7 @@ import java.util.List;
 @EnableCaching
 public class CacheConfig {
     @Autowired
-    private RedisMessageListenerContainer container;
+    private SubscriptServiceBImpl subscriptServiceB;
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
@@ -63,10 +63,14 @@ public class CacheConfig {
     public RedisMessageListenerContainer container(LettuceConnectionFactory connectionFactory, List<SubscriptService> subscriptServiceList) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
-        //
-        // for (SubscriptService subscriptService : subscriptServiceList) {
-        //     container.addMessageListener(new MessageListenerAdapter(subscriptService), new PatternTopic(subscriptService.getTopic()));
-        // }
+
+        // 这样一个都塞不进去
+        for (SubscriptService subscriptService : subscriptServiceList) {
+            container.addMessageListener(new MessageListenerAdapter(subscriptService, "subscript"), new PatternTopic(subscriptService.getTopic()));
+        }
+
+        // 难道获取到的topic是空的？
+        container.addMessageListener(new MessageListenerAdapter(subscriptServiceB, "subscript"), new PatternTopic(subscriptServiceB.getTopic()));
 
         return container;
     }

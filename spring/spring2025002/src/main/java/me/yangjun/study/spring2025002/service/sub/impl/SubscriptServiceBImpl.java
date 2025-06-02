@@ -14,9 +14,6 @@ import javax.annotation.PostConstruct;
 @Slf4j
 @Component
 public class SubscriptServiceBImpl implements SubscriptService {
-    @Autowired
-    private RedisMessageListenerContainer container;
-
     @Override
     public String getTopic() {
         return TopicConstants.TEST_TOPIC;
@@ -25,10 +22,5 @@ public class SubscriptServiceBImpl implements SubscriptService {
     @Override
     public void subscript(String message) {
         log.info("SubscriptServiceBImpl 接收到消息：{}", message);
-    }
-
-    @PostConstruct
-    public void post() {
-        container.addMessageListener(new MessageListenerAdapter(this), new PatternTopic(this.getTopic()));
     }
 }
