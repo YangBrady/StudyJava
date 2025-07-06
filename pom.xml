@@ -27,7 +27,7 @@
         <module>spring/spring2025001</module>
         <!-- SpringBoot 二级缓存-->
         <module>spring/spring2025002</module>
-        <!-- pringBoot 测试-->
+        <!-- SpringBoot 测试-->
         <module>spring/spring2025003</module>
         <!-- pringBoot redission加锁-->
         <module>spring/spring2025004</module>
