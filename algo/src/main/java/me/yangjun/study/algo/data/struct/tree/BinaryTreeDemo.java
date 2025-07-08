@@ -14,34 +14,34 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BinaryTreeDemo {
     public static void main(String[] args) {
-        // BinaryTreeDemo.breadthFirstTraversal(TreeNode.initDefaultTree());
+        BinaryTreeDemo.breadthFirstTraversal001(TreeNode.initDefaultTree());
         BinaryTreeDemo.depthFirstTraversal(TreeNode.initDefaultTree());
     }
 
     /**
-     * BFT 广度优先遍历，基于队列
+     * BFS 广度优先遍历，基于队列
      *
      * @param root 根节点
      */
-    public static void breadthFirstTraversal(TreeNode root) {
+    public static void breadthFirstTraversal001(TreeNode root) {
         // 定义一个队列，先进先出
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
+            log.info("node={}", node);
             if (node.getLeft() != null) {
                 queue.offer(node.getLeft());
             }
             if (node.getRight() != null) {
                 queue.offer(node.getRight());
             }
-            log.info("node={}", node);
         }
     }
 
     /**
-     * DFT 深度优先遍历，基于递归
+     * DFS 深度优先遍历，基于递归
      * 
      * <pre>
      *     前序遍历：根->左->右
@@ -52,15 +52,17 @@ public class BinaryTreeDemo {
      * @param root 根节点
      */
     public static void depthFirstTraversal(TreeNode root) {
-        // 先遍历当前节点
-        log.info("node={}", root);
-        // 判断是否有左节点
+        if (root == null) {
+            return;
+        }
+        // 前序遍历 log.info("node={}", root);
         if (root.getLeft() != null) {
             depthFirstTraversal(root.getLeft());
         }
-        // 判断是否有有节点
+        // 中序遍历 log.info("node={}", root);
         if (root.getRight() != null) {
             depthFirstTraversal(root.getRight());
         }
+        // 后序遍历 log.info("node={}", root);
     }
 }
