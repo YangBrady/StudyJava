@@ -1,12 +1,12 @@
 package me.yangjun.study.algo.leetcode;
 
-public class Code037 {
+public class Code035 {
 
     public static void main(String[] args) {
         int[] nums = {1, 3, 5, 6};
         int target = 2;
-        System.out.println(new Code037().searchInsert1(nums, target));
-        System.out.println(new Code037().searchInsert2(nums, target));
+        System.out.println(new Code035().searchInsert1(nums, target));
+        System.out.println(new Code035().searchInsert2(nums, target));
     }
 
     public int searchInsert1(int[] nums, int target) {
@@ -21,6 +21,9 @@ public class Code037 {
         return nums.length;
     }
 
+    /**
+     * 二分查找
+     */
     public int searchInsert2(int[] nums, int target) {
         if (nums[0] > target) {
             return 0;

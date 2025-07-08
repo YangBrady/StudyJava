@@ -1,4 +1,4 @@
-package me.yangjun.study.algo.leetcode;
+  package me.yangjun.study.algo.leetcode;
 
 public class Code027 {
 
@@ -10,6 +10,9 @@ public class Code027 {
         System.out.println(new Code027().removeElement(nums, target));
     }
 
+    /**
+     * 快慢指针
+     */
     public int removeElement(int[] nums, int val) {
         if (nums.length == 0) {
             return 0;
