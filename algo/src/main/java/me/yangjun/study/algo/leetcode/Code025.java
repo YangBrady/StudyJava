@@ -13,55 +13,46 @@ public class Code025 {
     }
 
     public ListNode reverseKGroup(ListNode head, int k) {
-        ListNode virNode = new ListNode(0, head);
-        ListNode pre = virNode;
-        ListNode cur = head;
-        int skip = 0;
-        while (skip < k && cur != null) {
-            ListNode rest = cur.next;
-            cur.next = null;
-            skip++;
-            if (skip == k) {
-                // 反转部分链表
-                ListNode reverseNode = reverseList(pre);
-
-                skip = 0;
+        ListNode dummyNode = new ListNode(0, head);
+        ListNode first = dummyNode;
+        ListNode cur = first;
+        ListNode rest = first.next;
+        while (true) {
+            int skip = 0;
+            for (int i = 0; i < k; i++) {
+                skip++;
+                if (cur.next != null) {
+                    cur = cur.next;
+                }
             }
+            // 根据 k 划分 出子链表
+            if (skip != k) {
+                break;
+            }
+            // 记录剩余节点
+            rest = cur.next;
+            // 反转部分链表 0->1->2->3
+            ListNode newFirst = reverseList(first.next, cur);
+
+            // 前面一部分的尾节点 -> 反转子链的头结点
+            first.next = newFirst;
+            // 反转子链的尾节点 -> 剩余部分的头节点
+            cur.next = rest;
         }
-        if (skip < k) {
-
-        }
-        ListNode restNode = fast.next;
-
-        if (checkRest(restNode, k)) {
-        }
-
-
-        return virNode.next;
+        return dummyNode.next;
     }
 
-    public ListNode reverseList(ListNode head) {
-        return reverse(null, head);
+    public ListNode reverseList(ListNode headNode, ListNode endNode) {
+        return reverse(null, headNode, endNode);
     }
 
-    public ListNode reverse(ListNode first, ListNode end) {
-        if (end == null) {
+    public ListNode reverse(ListNode first, ListNode end, ListNode endNode) {
+        if (end == endNode) {
             return first;
         }
         ListNode temp = end.next;
         end.next = first;
-        return reverse(end, temp);
-    }
-
-    public boolean checkRest(ListNode node, int k) {
-        ListNode tmp = new ListNode(0, node);
-        for (int i = 0; i < k + 1; i++) {
-            if (tmp == null) {
-                return false;
-            }
-            tmp = tmp.next;
-        }
-        return true;
+        return reverse(end, temp, endNode);
     }
 
     static class ListNode {
@@ -78,6 +69,21 @@ public class Code025 {
         ListNode(int val, ListNode next) {
             this.val = val;
             this.next = next;
+        }
+
+        @Override
+        public String toString() {
+            ListNode temp = this;
+            StringBuilder sb = new StringBuilder("[");
+            while (temp != null) {
+                sb.append(temp.val);
+                if (temp.next != null) {
+                    sb.append(" -> ");
+                }
+                temp = temp.next;
+            }
+            sb.append("]");
+            return sb.toString();
         }
     }
 }
