@@ -10,12 +10,6 @@ public class Code025 {
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
-
-        ListNode head2 = new ListNode(3);
-        head2.next = new ListNode(4);
-        head2.next.next = new ListNode(5);
-
-//        System.out.println(new Code025().reverseList(head, head2));
         System.out.println(new Code025().reverseKGroup(head, 3));
     }
 
@@ -23,7 +17,6 @@ public class Code025 {
         ListNode dummyNode = new ListNode(0, head);
         ListNode p = dummyNode;
         ListNode q = p;
-        ListNode rest = p.next;
         while (true) {
             int skip = 0;
             for (int i = 0; i < k; i++) {
@@ -36,21 +29,22 @@ public class Code025 {
             if (skip != k) {
                 break;
             }
+
             // 记录剩余节点
-            rest = q.next;
+            ListNode rest = q.next;
+
+            // 反转以后的子链表，头是 partPre 尾巴是 p.next
             q.next = null;
-            // 反转部分链表 1->2->3 --> 3->2->1
-            ListNode newFirst = reverseList(p.next);
+            ListNode partPre = reverseList(p.next);
+            ListNode partEnd = p.next;
 
-            // 反转以后，头是 newFirst 尾巴是 p.next
-            // 反转子链的尾节点 -> 剩余部分的头节点
-            ListNode newEnd = p.next;
-            p.next = newFirst;
-            // 前面一部分的尾节点 -> 反转子链的头结点
-            newEnd.next = rest;
+            // 头指针指向子链的头节点
+            p.next = partPre;
+            // 子链表的尾巴指向剩余节点
+            partEnd.next = rest;
 
-            p = newEnd;
-            q = newEnd;
+            p = partEnd;
+            q = partEnd;
         }
         return dummyNode.next;
     }
