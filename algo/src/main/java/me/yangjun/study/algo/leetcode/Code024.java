@@ -1,5 +1,7 @@
 package me.yangjun.study.algo.leetcode;
 
+import me.yangjun.study.algo.leetcode.linklist.ListNode;
+
 public class Code024 {
 
     public static void main(String[] args) {
@@ -26,22 +28,5 @@ public class Code024 {
             pre = pre.next.next;
         }
         return virNode.next;
-    }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
     }
 }

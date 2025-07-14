@@ -1,5 +1,7 @@
 package me.yangjun.study.algo.leetcode;
 
+import me.yangjun.study.algo.leetcode.linklist.ListNode;
+
 public class Code206 {
 
     public static void main(String[] args) {
@@ -39,29 +41,13 @@ public class Code206 {
         return reverse(null, head);
     }
 
-    public ListNode reverse(ListNode first, ListNode end) {
-        if (end == null) {
-            return first;
+    public ListNode reverse(ListNode p, ListNode q) {
+        // 终止条件，不存在后续节点了
+        if (q == null) {
+            return p;
         }
-        ListNode temp = end.next;
-        end.next = first;
-        return reverse(end, temp);
-    }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
+        ListNode temp = q.next;
+        q.next = p;
+        return reverse(q, temp);
     }
 }

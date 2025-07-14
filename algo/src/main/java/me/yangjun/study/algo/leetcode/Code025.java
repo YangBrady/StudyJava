@@ -1,5 +1,7 @@
 package me.yangjun.study.algo.leetcode;
 
+import me.yangjun.study.algo.leetcode.linklist.ListNode;
+
 public class Code025 {
 
     public static void main(String[] args) {
@@ -9,20 +11,25 @@ public class Code025 {
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
 
+        ListNode head2 = new ListNode(3);
+        head2.next = new ListNode(4);
+        head2.next.next = new ListNode(5);
+
+//        System.out.println(new Code025().reverseList(head, head2));
         System.out.println(new Code025().reverseKGroup(head, 3));
     }
 
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode dummyNode = new ListNode(0, head);
-        ListNode first = dummyNode;
-        ListNode cur = first;
-        ListNode rest = first.next;
+        ListNode p = dummyNode;
+        ListNode q = p;
+        ListNode rest = p.next;
         while (true) {
             int skip = 0;
             for (int i = 0; i < k; i++) {
-                skip++;
-                if (cur.next != null) {
-                    cur = cur.next;
+                if (q.next != null) {
+                    q = q.next;
+                    skip++;
                 }
             }
             // 根据 k 划分 出子链表
@@ -30,60 +37,34 @@ public class Code025 {
                 break;
             }
             // 记录剩余节点
-            rest = cur.next;
-            // 反转部分链表 0->1->2->3
-            ListNode newFirst = reverseList(first.next, cur);
+            rest = q.next;
+            q.next = null;
+            // 反转部分链表 1->2->3 --> 3->2->1
+            ListNode newFirst = reverseList(p.next);
 
-            // 前面一部分的尾节点 -> 反转子链的头结点
-            first.next = newFirst;
+            // 反转以后，头是 newFirst 尾巴是 p.next
             // 反转子链的尾节点 -> 剩余部分的头节点
-            cur.next = rest;
+            ListNode newEnd = p.next;
+            p.next = newFirst;
+            // 前面一部分的尾节点 -> 反转子链的头结点
+            newEnd.next = rest;
+
+            p = newEnd;
+            q = newEnd;
         }
         return dummyNode.next;
     }
 
-    public ListNode reverseList(ListNode headNode, ListNode endNode) {
-        return reverse(null, headNode, endNode);
+    public ListNode reverseList(ListNode headNode) {
+        return reverse(null, headNode);
     }
 
-    public ListNode reverse(ListNode first, ListNode end, ListNode endNode) {
-        if (end == endNode) {
-            return first;
+    public ListNode reverse(ListNode p, ListNode q) {
+        if (q == null) {
+            return p;
         }
-        ListNode temp = end.next;
-        end.next = first;
-        return reverse(end, temp, endNode);
-    }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-        @Override
-        public String toString() {
-            ListNode temp = this;
-            StringBuilder sb = new StringBuilder("[");
-            while (temp != null) {
-                sb.append(temp.val);
-                if (temp.next != null) {
-                    sb.append(" -> ");
-                }
-                temp = temp.next;
-            }
-            sb.append("]");
-            return sb.toString();
-        }
+        ListNode temp = q.next;
+        q.next = p;
+        return reverse(q, temp);
     }
 }
