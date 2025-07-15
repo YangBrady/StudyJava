@@ -1,4 +1,4 @@
-package me.yangjun.study.algo.data.struct.tree;
+package me.yangjun.study.algo.datastruct.tree;
 
 import lombok.extern.slf4j.Slf4j;
 

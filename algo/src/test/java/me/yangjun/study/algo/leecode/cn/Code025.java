@@ -1,6 +1,6 @@
-package me.yangjun.study.algo.leetcode;
+package me.yangjun.study.algo.leecode.cn;
 
-import me.yangjun.study.algo.leetcode.linklist.ListNode;
+import me.yangjun.study.algo.leecode.cn.entity.ListNode;
 
 public class Code025 {
 

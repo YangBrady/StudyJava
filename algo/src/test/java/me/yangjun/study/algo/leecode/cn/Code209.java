@@ -1,4 +1,4 @@
-package me.yangjun.study.algo.leetcode;
+package me.yangjun.study.algo.leecode.cn;
 
 public class Code209 {
     public static void main(String[] args) {

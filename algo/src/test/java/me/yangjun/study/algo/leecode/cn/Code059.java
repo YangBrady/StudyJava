@@ -1,4 +1,4 @@
-package me.yangjun.study.algo.leetcode;
+package me.yangjun.study.algo.leecode.cn;
 
 import java.util.Arrays;
 

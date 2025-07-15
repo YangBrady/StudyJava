@@ -1,4 +1,4 @@
-package me.yangjun.study.algo.data.struct.queue;
+package me.yangjun.study.algo.datastruct.queue;
 
 import java.util.Scanner;
 

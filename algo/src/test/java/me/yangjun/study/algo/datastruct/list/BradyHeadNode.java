@@ -1,4 +1,4 @@
-package me.yangjun.study.algo.data.struct.list;
+package me.yangjun.study.algo.datastruct.list;
 
 import lombok.Data;
 

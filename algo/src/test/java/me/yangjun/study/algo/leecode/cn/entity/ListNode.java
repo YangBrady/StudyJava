@@ -1,4 +1,4 @@
-package me.yangjun.study.algo.leetcode.linklist;
+package me.yangjun.study.algo.leecode.cn.entity;
 
 public class ListNode {
     public int val;

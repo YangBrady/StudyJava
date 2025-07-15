@@ -1,4 +1,4 @@
-package me.yangjun.study.algo.data.struct.array;
+package me.yangjun.study.algo.datastruct.array;
 
 /**
  * sparseArrays 稀疏数组
