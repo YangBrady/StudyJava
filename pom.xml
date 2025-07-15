@@ -33,6 +33,7 @@
         <module>spring/spring2025004</module>
         <module>frame-akka</module>
         <module>spring/spring-cache</module>
+        <module>springcloud/SpringCloudDemo001</module>
     </modules>
 
     <properties>
