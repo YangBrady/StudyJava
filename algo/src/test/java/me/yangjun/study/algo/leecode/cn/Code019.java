@@ -1,5 +1,7 @@
 package me.yangjun.study.algo.leecode.cn;
 
+import me.yangjun.study.algo.leecode.cn.entity.ListNode;
+
 public class Code019 {
 
     public static void main(String[] args) {
@@ -90,22 +92,5 @@ public class Code019 {
         }
         // 返回虚拟节点的下个节点是为了保证n=1的情况
         return virNode.next;
-    }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
     }
 }
