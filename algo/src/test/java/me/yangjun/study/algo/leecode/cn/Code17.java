@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 /**
  * <a href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/description/">LeeCode 17</a>
  */
-public class Demo17 {
+public class Code17 {
     static Stream<Arguments> dataProvider() {
         return Stream.of(
                 // Arguments.of("23")
@@ -27,7 +27,7 @@ public class Demo17 {
     @ParameterizedTest
     @MethodSource("dataProvider")
     public void test1(String digits) {
-        System.out.println(new Demo17.Solution().letterCombinations(digits));
+        System.out.println(new Code17.Solution().letterCombinations(digits));
     }
 
     private static class Solution {

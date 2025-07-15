@@ -17,7 +17,7 @@ import java.util.stream.Stream;
  * <p>
  * 对于给定的输入，保证和为 target 的不同组合数少于 150 个。
  */
-public class Demo39 {
+public class Code39 {
     static Stream<Arguments> dataProvider() {
         return Stream.of(
                 Arguments.of(new int[]{2, 3, 6, 7}, 7),

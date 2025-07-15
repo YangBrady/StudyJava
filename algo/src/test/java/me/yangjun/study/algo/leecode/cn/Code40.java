@@ -1,6 +1,5 @@
 package me.yangjun.study.algo.leecode.cn;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -11,7 +10,7 @@ import java.util.stream.Stream;
 /**
  * <a href="https://leetcode.cn/problems/combination-sum-ii/description/">LeeCode 40</a>
  */
-public class Demo40 {
+public class Code40 {
     static Stream<Arguments> dataProvider() {
         return Stream.of(
                 Arguments.of(new int[]{2, 3, 6, 7}, 7),
@@ -22,7 +21,7 @@ public class Demo40 {
     @ParameterizedTest
     @MethodSource("dataProvider")
     public void test1(int[] candidates, int target) {
-        System.out.println(new Demo40.Solution().combinationSum2(candidates, target));
+        System.out.println(new Code40.Solution().combinationSum2(candidates, target));
     }
 
     private static class Solution {

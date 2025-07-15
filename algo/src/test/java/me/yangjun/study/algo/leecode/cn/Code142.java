@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 /**
  * <a href="https://leetcode.cn/problems/linked-list-cycle-ii/description/">LeeCode 142</a>
  */
-public class Demo142 {
+public class Code142 {
     static Stream<Arguments> dataProvider() {
         ListNode head = new ListNode(3);
         ListNode node = new ListNode(2);
@@ -25,7 +25,7 @@ public class Demo142 {
     @ParameterizedTest
     @MethodSource("dataProvider")
     public void test1(ListNode head) {
-        System.out.println(new Demo142.Solution().detectCycle(head));
+        System.out.println(new Code142.Solution().detectCycle(head));
     }
 
     private static class Solution {

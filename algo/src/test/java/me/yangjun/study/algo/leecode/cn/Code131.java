@@ -5,15 +5,13 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 /**
  * <a href="https://leetcode.cn/problems/palindrome-partitioning/description/">LeeCode 131</a>
  */
-public class Demo131 {
+public class Code131 {
     static Stream<Arguments> dataProvider() {
         return Stream.of(
                 Arguments.of("aab"),
@@ -24,7 +22,7 @@ public class Demo131 {
     @ParameterizedTest
     @MethodSource("dataProvider")
     public void test1(String digits) {
-        System.out.println(new Demo131.Solution().partition(digits));
+        System.out.println(new Code131.Solution().partition(digits));
     }
 
     private static class Solution {

@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 /**
  * <a href="https://leetcode.cn/problems/combination-sum-iii/description/">LeeCode 216 </a>
  */
-public class Demo216 {
+public class Code216 {
     static Stream<Arguments> dataProvider() {
         return Stream.of(
                 Arguments.of(3, 7),
@@ -23,7 +23,7 @@ public class Demo216 {
     @ParameterizedTest
     @MethodSource("dataProvider")
     public void test1(int k, int n) {
-        System.out.println(new Demo216.Solution().combinationSum3(k, n));
+        System.out.println(new Code216.Solution().combinationSum3(k, n));
     }
 
     private static class Solution {
