@@ -33,7 +33,11 @@
         <module>spring/spring2025004</module>
         <module>frame-akka</module>
         <module>spring/spring-cache</module>
+        <!-- SpringBoot MyBatis-->
+        <module>spring/spring-mybatis</module>
         <module>springcloud/SpringCloudDemo001</module>
+        <!-- ShardingSphere 分库分表 -->
+        <module>frame/ShardingSphereDemo</module>
     </modules>
 
     <properties>
@@ -43,7 +47,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring-boot.version>2.7.18</spring-boot.version>
-        <druid.version>1.2.16</druid.version>
+        <druid.version>1.2.27</druid.version>
         <rocketMQStarter.version>2.3.0</rocketMQStarter.version>
     </properties>
 
@@ -71,11 +75,33 @@
                 <version>${spring-boot.version}</version>
             </dependency>
 
+            <!-- 数据库驱动 -->
+<!--            <dependency>-->
+<!--                <groupId>mysql</groupId>-->
+<!--                <artifactId>mysql-connector-java</artifactId>-->
+<!--                <version>8.0.33</version>-->
+<!--            </dependency>-->
+            <dependency>
+                <groupId>com.mysql</groupId>
+                <artifactId>mysql-connector-j</artifactId>
+                <version>8.4.0</version>
+            </dependency>
+
             <!-- 阿里数据库连接池 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.5.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>2.3.2</version>
             </dependency>
 
             <dependency>
