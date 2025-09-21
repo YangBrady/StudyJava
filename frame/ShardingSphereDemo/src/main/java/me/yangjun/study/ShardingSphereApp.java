@@ -5,9 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan
-public class App {
+@MapperScan("me.yangjun.study.mapper")
+public class ShardingSphereApp {
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(ShardingSphereApp.class, args);
     }
 }

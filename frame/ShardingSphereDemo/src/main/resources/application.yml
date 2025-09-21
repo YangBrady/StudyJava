@@ -2,27 +2,21 @@ server:
   port: 8082
 
 logging:
-  config: classpath:log4j2.xml
   level:
-    root: debug
+    root: info
     me.yangjun.study: debug
+    org.apache.shardingsphere: debug
 
 spring:
-  jpa:
-    database: mysql
-    hibernate:
-      ddl-auto: update
-    show-sql: true
   shardingsphere:
     datasource:
-      ds:
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        max-active: 16
-        password: Aa123456
-        type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://localhost:3306/shardingsphere?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
-        username: root
       names: ds
+      ds:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/shardingsphere?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+        username: root
+        password: Aa123456
     sharding:
       tables:
         t_order:
@@ -40,3 +34,10 @@ spring:
             inline:
               algorithm-expression: t_order_$->{order_id % 2}
               sharding-column: order_id
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: me.yangjun.study.entity
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射 address_book ---> addressBook
+    map-underscore-to-camel-case: true
