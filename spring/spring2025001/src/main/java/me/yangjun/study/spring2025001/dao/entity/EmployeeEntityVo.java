@@ -1,10 +1,10 @@
 package me.yangjun.study.spring2025001.dao.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
+import java.util.Date;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.util.Date;
+
 import lombok.Data;
 
 /**
