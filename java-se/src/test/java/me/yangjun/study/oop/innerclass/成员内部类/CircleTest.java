@@ -1,4 +1,4 @@
-package me.yangjun.study.面向对象.内部类.成员内部类;
+package me.yangjun.study.oop.innerclass.成员内部类;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,15 +17,16 @@ public class CircleTest {
         Circle circle = new Circle(1);
 
         Circle.Draw draw1 = circle.new Draw();
-        draw1.drawSahpe();
+        draw1.drawShape();
+        draw1.printA();
     }
 
     // 第二种方式
     @Test
     public void demo002() {
         Circle circle = new Circle(1);
-        Circle.Draw draw2 = circle.getInstance();
-        draw2.drawSahpe();
+        Circle.Draw draw2 = circle.getDrawInstance();
+        draw2.drawShape();
 
     }
 }
