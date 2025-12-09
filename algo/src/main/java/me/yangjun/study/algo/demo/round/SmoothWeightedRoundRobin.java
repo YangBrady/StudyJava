@@ -1,14 +1,12 @@
-package com.example.demo.round;
+package me.yangjun.study.algo.demo.round;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import lombok.Setter;
 import org.junit.jupiter.api.Test;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**

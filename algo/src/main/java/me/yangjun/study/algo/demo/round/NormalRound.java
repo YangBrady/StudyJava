@@ -1,4 +1,4 @@
-package com.example.demo.round;
+package me.yangjun.study.algo.demo.round;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
