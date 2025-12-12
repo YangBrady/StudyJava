@@ -1,13 +1,12 @@
 package me.yangjun.study.algo.demo.round;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
+import lombok.Getter;
 import lombok.Setter;
 import org.junit.jupiter.api.Test;
 
-import lombok.Getter;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * 平滑加权轮询算法

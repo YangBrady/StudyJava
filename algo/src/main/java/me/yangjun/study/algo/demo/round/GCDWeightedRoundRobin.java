@@ -1,13 +1,12 @@
 package me.yangjun.study.algo.demo.round;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.junit.jupiter.api.Test;
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * 加权轮询算法 - 最大公约数
@@ -30,7 +29,7 @@ public class GCDWeightedRoundRobin {
 
         // 简化权重
         List<Integer> unitWeightList = serverList.stream().map(RequestServer::getWeight).map(o -> o / gcd)
-            .mapToInt(Integer::valueOf).boxed().collect(Collectors.toList());
+                .mapToInt(Integer::valueOf).boxed().collect(Collectors.toList());
 
         List<RequestServer> result = new ArrayList<>();
         boolean reset = false;
