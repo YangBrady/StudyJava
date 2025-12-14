@@ -1,4 +1,4 @@
-package me.yangjun.study.spring2025003.service.scheduled;
+package me.yangjun.study.spring2025003.demo20251210.service.scheduled;
 
 import java.util.concurrent.TimeUnit;
 
