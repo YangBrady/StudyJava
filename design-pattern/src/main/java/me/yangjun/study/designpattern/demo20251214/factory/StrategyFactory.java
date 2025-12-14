@@ -1,4 +1,11 @@
-package me.yangjun.study.designpattern.demo20251214;
+package me.yangjun.study.designpattern.demo20251214.factory;
+
+import me.yangjun.study.designpattern.demo20251214.service.impl.StrategyAHandler;
+import me.yangjun.study.designpattern.demo20251214.service.impl.StrategyASelector;
+import me.yangjun.study.designpattern.demo20251214.service.impl.StrategyBHandler;
+import me.yangjun.study.designpattern.demo20251214.service.impl.StrategyBSelector;
+import me.yangjun.study.designpattern.demo20251214.service.StrategyHandler;
+import me.yangjun.study.designpattern.demo20251214.service.StrategySelector;
 
 import java.util.HashMap;
 import java.util.Map;
