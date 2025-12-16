@@ -21,6 +21,6 @@ public class TestWeb {
     public String sayHi(@PathVariable("id") Long id) {
         log.info("进入controller {}", id);
         Employee employee = employeeService.getById(id);
-        return employee.getFirstName();
+        return employee.getFirstName() + employee.getLastName();
     }
 }
