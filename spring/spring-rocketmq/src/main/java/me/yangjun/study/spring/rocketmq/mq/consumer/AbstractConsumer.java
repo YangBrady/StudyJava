@@ -1,4 +1,4 @@
-package me.yangjun.study.springtest.mq.consumer;
+package me.yangjun.study.spring.rocketmq.mq.consumer;
 
 import org.apache.rocketmq.spring.core.RocketMQListener;
 
