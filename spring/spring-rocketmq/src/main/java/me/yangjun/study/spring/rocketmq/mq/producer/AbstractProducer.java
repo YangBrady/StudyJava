@@ -13,15 +13,30 @@ public abstract class AbstractProducer<T> {
     @Autowired
     private RocketMQTemplate rocketmqTemplate;
 
-    public SendResult onMessage(String topic, String tag, T messagePO) {
+    public SendResult sendMessage(String topic, String tag, T messagePO) {
         String destination = topic + ":" + tag;
-        Message<T> message = MessageBuilder.withPayload(messagePO).setHeader(RocketMQHeaders.KEYS, "key").build();
+        Message<T> message = MessageBuilder
+                .withPayload(messagePO)
+                .setHeader(RocketMQHeaders.KEYS, "key")
+                .build();
         return rocketmqTemplate.syncSend(destination, message);
+    }
+
+    public SendResult sendMessageOrderly(String topic, String tag, T messagePO) {
+        String destination = topic + ":" + tag;
+        Message<T> message = MessageBuilder
+                .withPayload(messagePO)
+                .setHeader(RocketMQHeaders.KEYS, "key")
+                .build();
+        return rocketmqTemplate.syncSendOrderly(destination, message, "test_sync_send_order");
     }
 
     public void send(String topic, String tag, T messagePO) {
         String destination = topic + ":" + tag;
-        Message<T> message = MessageBuilder.withPayload(messagePO).setHeader(RocketMQHeaders.KEYS, "key").build();
+        Message<T> message = MessageBuilder
+                .withPayload(messagePO)
+                .setHeader(RocketMQHeaders.KEYS, "key")
+                .build();
         rocketmqTemplate.send(destination, message);
     }
 }

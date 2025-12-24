@@ -8,10 +8,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserPOProducer extends AbstractProducer<UserPO> {
     public SendResult sendBasicMessage(UserPO userPO) {
-        return onMessage(RocketMQConstant.PERSON_ARCHIVE_TOPIC, "basic", userPO);
+        return sendMessage(RocketMQConstant.PERSON_ARCHIVE_TOPIC, "basic", userPO);
+    }
+
+    public SendResult batchSendBasicMessage(UserPO userPO) {
+        SendResult result = null;
+        for (int i = 0; i < 10; i++) {
+            userPO.setAge(i);
+            result = sendMessageOrderly(RocketMQConstant.PERSON_ARCHIVE_TOPIC, "basic", userPO);
+        }
+        return result;
     }
 
     public SendResult sendCardMessage(UserPO userPO) {
-        return onMessage(RocketMQConstant.PERSON_ARCHIVE_TOPIC, "card", userPO);
+        return sendMessage(RocketMQConstant.PERSON_ARCHIVE_TOPIC, "card", userPO);
     }
 }

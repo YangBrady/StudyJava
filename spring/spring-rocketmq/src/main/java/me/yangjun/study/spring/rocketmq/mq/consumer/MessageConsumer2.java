@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 @RocketMQMessageListener(
         topic = RocketMQConstant.PERSON_ARCHIVE_TOPIC,
         consumerGroup = RocketMQConstant.CONSUMER_GROUP2,
+        consumeThreadNumber = 3,
+        consumeThreadMax = 5,
         // selectorExpression = RocketMQConstant.CONSUMER_GROUP2_SELECTOR
         selectorExpression = "*"
 )

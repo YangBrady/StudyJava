@@ -1,33 +1,17 @@
-#spring:
-#  main:
-#  datasource:
-#    # type: com.alibaba.druid.pool.DruidDataSource
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
-#    username: root
-#    password: Aa123456
-#
-#mybatis:
-#  mapper-locations: classpath:mapper/*/*.xml
-
 logging:
   level:
     root: info
-#    com.example.mybatis.mapper: debug
     RocketmqClient: error
     io:
       netty: error
-mybatis-plus:
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 rocketmq:
-  name-server: 127.0.0.1:9876
+  name-server: localhost:9876 # 不知道为啥，用localhost的话debug会超时，换成127.0.0.1正常启动也超时
   producer:
     # 发送同一类消息的设置为同一个group，保证唯一
     group: springboot_producer_group
     # 发送消息超时时间，默认3000
-    sendMessageTimeout: 10000
+    sendMessageTimeout: 60000
     # 发送消息失败重试次数，默认2
     retryTimesWhenSendFailed: 2
     # 异步消息重试此处，默认2

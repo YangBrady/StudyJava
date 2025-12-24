@@ -15,13 +15,15 @@ public class DemoController {
     @Autowired
     private UserPOProducer userPOProducer;
 
-    @GetMapping("/testSendMsg/{tag}")
-    public SendResult testSendMsg(@PathVariable("tag") String tag) {
+    @GetMapping("/testSendMsg/{type}")
+    public SendResult testSendMsg(@PathVariable("type") String type) {
         UserPO userPO = UserPO.builder().age(30).name("哇哈哈").build();
 
         SendResult sendResult;
-        if ("basic".equalsIgnoreCase(tag)) {
+        if ("basic".equalsIgnoreCase(type)) {
             sendResult = userPOProducer.sendBasicMessage(userPO);
+        } else if ("batchBatch".equalsIgnoreCase(type)) {
+            sendResult = userPOProducer.batchSendBasicMessage(userPO);
         } else {
             sendResult = userPOProducer.sendCardMessage(userPO);
         }
