@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * <a href="https://leetcode.cn/problems/implement-queue-using-stacks/description/">LeeCode 232 </a>
@@ -11,7 +12,8 @@ import java.util.LinkedList;
 public class Code232 {
     @Test
     public void test1() {
-        MyQueue queue = new MyQueue();
+        // MyQueue queue = new MyQueue();
+        MyQueueV2 queue = new MyQueueV2();
         queue.push(1);
         queue.push(2);
         queue.push(3);
@@ -53,6 +55,62 @@ public class Code232 {
 
         public boolean empty() {
             return this.stack.isEmpty();
+        }
+    }
+
+    // FIFO
+    private static class MyQueueV2 {
+        // FILO
+        Stack<Integer> stack;
+        Stack<Integer> tempStack;
+
+        public MyQueueV2() {
+            this.stack = new Stack<>();
+            this.tempStack = new Stack<>();
+        }
+
+        public void push(int x) {
+            stack.add(x);
+        }
+
+        public int peek() {
+            if (empty()) {
+                throw new NullPointerException("");
+            }
+            while (!stack.isEmpty()) {
+                Integer pop = stack.pop();
+                tempStack.add(pop);
+            }
+            Integer result = tempStack.peek();
+
+            while (!tempStack.isEmpty()) {
+                Integer pop = tempStack.pop();
+                stack.add(pop);
+            }
+
+            return result;
+        }
+
+        public int pop() {
+            if (empty()) {
+                throw new NullPointerException("");
+            }
+            while (!stack.isEmpty()) {
+                Integer pop = stack.pop();
+                tempStack.add(pop);
+            }
+            Integer result = tempStack.pop();
+
+            while (!tempStack.isEmpty()) {
+                Integer pop = tempStack.pop();
+                stack.add(pop);
+            }
+
+            return result;
+        }
+
+        public boolean empty() {
+            return stack.isEmpty();
         }
     }
 }
