@@ -2,10 +2,6 @@ package me.yangjun.study.algo.leecode.cn;
 
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * <a href="https://leetcode.cn/problems/add-two-numbers/">LeeCode 002 </a>
  */
@@ -32,42 +28,36 @@ public class Code002 {
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
     }
 
+    /**
+     * 核心思路：跟加法运算一样，每次只计算当前位的值，进位的存下来下次计算，这样可以避免直接相加的时候溢出
+     */
     class Solution {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-            // 计算每个链表的值
-            BigDecimal sum1 = getNums(l1);
-            BigDecimal sum2 = getNums(l2);
-            BigDecimal sum = sum1.add(sum2);
+            ListNode virNode = new ListNode();
+            ListNode temp = virNode;
 
-            // 拼接结果 123 -> 3-2-1
-            String sumStr = sum.toPlainString();
-            ListNode result = new ListNode(sum.remainder(BigDecimal.TEN).intValue());
-            sum = sum.divide(BigDecimal.TEN);
-            ListNode temp = result;
-            for (int i = sumStr.length() - 2; i >= 0; i--) {
-                BigDecimal i1 = sum.remainder(BigDecimal.TEN);
-                sum = sum.divide(BigDecimal.TEN);
-                temp.next = new ListNode(i1.intValue());
+            int remain = 0;
+            while (l1 != null || l2 != null) {
+                int n1 = l1 == null ? 0 : l1.val;
+                int n2 = l2 == null ? 0 : l2.val;
+
+                int sum = n1 + n2 + remain;
+
+                int i = sum % 10;
+                remain = sum / 10;
+
+                temp.next = new ListNode(i);
                 temp = temp.next;
-            }
-            return result;
-        }
 
-        public BigDecimal getNums(ListNode listNode) {
-            List<Integer> nodes = new ArrayList<>();
-            ListNode temp = listNode;
-            do {
-                nodes.add(temp.val);
-                temp = temp.next;
-            } while (temp != null);
-
-            BigDecimal sum = BigDecimal.ZERO;
-            BigDecimal index = BigDecimal.ONE;
-            for (int i = 0; i < nodes.size(); i++) {
-                sum = sum.add(index.multiply(new BigDecimal(nodes.get(i))));
-                index = index.multiply(BigDecimal.TEN);
+                l1 = l1 == null ? null : l1.next;
+                l2 = l2 == null ? null : l2.next;
             }
-            return sum;
+
+            // 最终保留的进位值单独存一个
+            if (remain > 0) {
+                temp.next = new ListNode(remain);
+            }
+            return virNode.next;
         }
     }
 }
