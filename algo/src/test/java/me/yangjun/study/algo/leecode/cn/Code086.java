@@ -16,9 +16,9 @@ import java.util.stream.Stream;
 public class Code086 {
     static Stream<Arguments> dataProvider() {
         return Stream.of(
-                // Arguments.of("23")
+                // Arguments.of(new ListNode(1, new ListNode(4, new ListNode(3, new ListNode(2, new ListNode(5, new ListNode(2)))))), 3)
                 // ,
-                Arguments.of("")
+            Arguments.of(new ListNode(2, new ListNode(1)), 2)
                 // ,
                 // Arguments.of("2")
         );
@@ -26,51 +26,50 @@ public class Code086 {
 
     @ParameterizedTest
     @MethodSource("dataProvider")
-    public void test1(String digits) {
-        System.out.println(new Solution().letterCombinations(digits));
+    public void test1(ListNode head, int x) {
+        ListNode partition = new Solution().partition(head, x);
+        System.out.println(partition);
     }
 
-    private static class Solution {
-        private static final Map<Character, String> NUM2CHAR_MAP = new HashMap<>();
+     // Definition for singly-linked list.
+     public static class ListNode {
+         int val;
+         ListNode next;
+         ListNode() {}
+         ListNode(int val) { this.val = val; }
+         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     }
 
-        static {
-            NUM2CHAR_MAP.put('2', "abc");
-            NUM2CHAR_MAP.put('3', "def");
-            NUM2CHAR_MAP.put('4', "ghi");
-            NUM2CHAR_MAP.put('5', "jkl");
-            NUM2CHAR_MAP.put('6', "mno");
-            NUM2CHAR_MAP.put('7', "pqrs");
-            NUM2CHAR_MAP.put('8', "tuv");
-            NUM2CHAR_MAP.put('9', "wxyz");
-        }
+    class Solution {
+        public ListNode partition(ListNode head, int x) {
+            ListNode less = new ListNode();
+            ListNode lessIndex = less;
 
-        public List<String> letterCombinations(String digits) {
-            if (digits.isEmpty()) {
-                return new ArrayList<>();
+            ListNode more = new ListNode();
+            ListNode moreEnd = more;
+
+            // less more
+            ListNode temp = head;
+            while (temp != null) {
+                if (temp.val < x) {
+                    lessIndex.next = new ListNode(temp.val);
+                    lessIndex = lessIndex.next;
+                } else {
+                    moreEnd.next = new ListNode(temp.val);
+                    moreEnd = moreEnd.next;
+                }
+                temp = temp.next;
             }
-            List<String> result = new ArrayList<>();
-            StringBuilder path = new StringBuilder();
 
-            List<String> charsList = new ArrayList<>();
-            for (char c : digits.toCharArray()) {
-                charsList.add(NUM2CHAR_MAP.get(c));
+            // combine
+            if (more.next == null) {
+                return less.next;
+            } else if (less.next == null) {
+                return more.next;
             }
+            lessIndex.next = more.next;
 
-            backtracking(charsList, digits.length(), path, result);
-            return result;
-        }
-
-        private void backtracking(List<String> charsList, int deep, StringBuilder path, List<String> result) {
-            if (path.length() == deep) {
-                result.add(path.toString());
-                return;
-            }
-            String curNumChars = charsList.get(path.length());
-            for (int i = 0; i < curNumChars.length(); i++) {
-                path.append(curNumChars.charAt(i));
-                backtracking(charsList, deep, path, result);
-                path.deleteCharAt(path.length() - 1);
-            }
+            return less.next;
         }
     }
 }

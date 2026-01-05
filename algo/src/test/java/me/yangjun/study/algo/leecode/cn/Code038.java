@@ -28,6 +28,7 @@ public class Code038 {
 
     private static class Solution {
         public String countAndSay(int n) {
+            // 题目终止条件
             if (n < 1 || n > 30) {
                 return null;
             }
@@ -36,14 +37,13 @@ public class Code038 {
         }
 
         public String rev(String temp, int n) {
-            // break
+            // 递归终止条件
             if (n == 1) {
                 return "1";
             }
 
-            // rev get last one
+            // 核心任务，取出上一步的数据，然后解析
             temp = rev(temp, n - 1);
-
             // parse
             return parse(temp);
         }
